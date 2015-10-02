@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>XcodeGhost-review</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="A record for the XcodeGhost infection.">
+        <meta name="description" content="XcodeGhost大规模感染事件资料记录">
+        
+        <link rel="shortcut icon" href="../../../../images/myL.ico"/> <!-- The shortcut icon -->
+        
+        <!-- Import third party plugins -->
+        <script type="text/javascript" src="../../../../bower_components/jquery/dist/jquery.min.js"></script> <!-- http://jquery.com/ -->
+        <link rel="stylesheet" href="../../../../css/animate.css" /> <!-- http://daneden.github.io/animate.css/ -->
+        <script type="text/javascript" src="../../../../js/jquery.storageapi.min.js"></script> <!-- http://github.com/julien-maurel/jQuery-Storage-API/ -->
+        <link rel="stylesheet" href="../../../../bower_components/bootstrap/dist/css/bootstrap.min.css" /> <!-- http://getbootstrap.com/ -->
+        <script src="../../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script> <!-- http://getbootstrap.com/ -->
+        <link rel="stylesheet" href="../../../../google-code-prettify/prettify.css" />
+        <script src="../../../../google-code-prettify/prettify.js"></script>
+        <!-- End of third party plugins -->
+        
+        <!-- Import self css and js files -->
+        <script type="text/javascript" src="../../../../js/my-language-jquery.js"></script>
+        <!-- End of self files -->
+        
+        <style>
+            
+            body {
+                font-family: Verdana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+            }
+            
+            a:hover,
+            a:link,
+            a:visited {
+                cursor: pointer;
+                text-decoration: none;
+            }
+            
+            .p-resize {
+                font-size: 1.5em;
+            }
+            
+            .p-delete {
+                text-decoration: line-through;
+            }
+            
+            .disqus_content #disqus_thread {
+                width: 96%;
+                margin: 2% auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <br />
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ol class="breadcrumb language_en">
+                        <li><a href="../../../../" target="_top">Home</a></li>
+                        <li class="bread-li-others"><a href="../../../articles.html" target="_top">Article - Others</a></li>
+                        <li class="active">XcodeGhost review</li>
+                    </ol>
+                    <ol class="breadcrumb language_cn">
+                        <li><a href="../../../../" target="_top">主页</a></li>
+                        <li class="bread-li-others"><a href="../../../articles.html" target="_top">其他博文</a></li>
+                        <li class="active">XcodeGhost笔记</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" id="enButton"><h5>English <span class="glyphicon glyphicon-ok"></span></h5></a>
+                                </li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" id="cnButton"><h5>简体中文 <span class=""></span></h5></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row language_en">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <br/>
+                    <div class="alert alert-info" role="alert"><strong>Ooops!</strong> Have no EN version right now... </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <br/>
+                    <div class="jumbotron">
+                        <img src="images/xcode-img.png" alt="xcode ghost" width="130" height="120">
+                        <h2>XcodeGhost笔记</h2>
+                        <p>关于发生在2015年9月份的XcodeGhost大规模感染事件资料记录。</p>
+
+                        <p><small>语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></small></p>
+                        <p><small>发布日期：2015-09-22</small></p>
+                        <p><small>更新日期：2015-09-22</small></p>
+                        <p><small>作者：<em>lngost</em></small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-9 col-md-9">
+                    <div class="input-group">
+                        <span class="input-group-addon">URL</span>
+                        <input type="url" class="form-control" value="https://lngost.github.io/pages/articles/others/XcodeGhost-review/xcodeghost-review.html" readonly />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7">
+                    <h1><span class="label label-primary">目录</span></h1>
+                    <div class="list-group">
+                        <a href="#review" class="list-group-item"><p class="p-resize">1. 事件回顾</p></a>
+                        <a href="#attach-a" class="list-group-item"><p class="p-resize">附录A：搜集的各种分析报告、资料一览表</p></a>
+                        <a href="#attach-b" class="list-group-item"><p class="p-resize">附录B：微博账户分析、git log查看、疑似作者身份被曝光</p></a>
+                        <a href="#attach-c" class="list-group-item"><p class="p-resize">附录C：斯诺登释出的有关Xcode后门植入的文件</p></a>
+                        <a href="#attach-d" class="list-group-item"><p class="p-resize">附录D：被公布的XcodeGhost源代码文件</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="review">1. <span class="label label-primary">事件回顾</span></h1>
+                    <br/>
+                    <p class="p-resize">* 2015年9月14日，国家互联网应急中心发布预警。</p>
+                    <img src="images/cncert-xcode.jpg" alt="cncert xcode" class="img-responsive img-thumbnail" width="840" height="420" />
+                    <p class="p-resize">* 2015年9月16日，腾讯安全响应中心称，「发现 App Store上的 TOP5000 应用有 76 款被感染，于是我们向苹果官方及大部分受影响的厂商同步了这一情况。」</p>
+                    <p class="p-resize">* 2015年9月17日09:45分，新浪微博名为@唐巧_boy的用户发布了一条动态，称其朋友从非官方渠道下载的Xcode所编译出来的app被注入了第三方代码，会向一个网站上传用户数据，并且已发现2个知名的app被注入。</p>
+                    <p class="p-resize">(从此时开始，XcodeGhost事件快速升温)</p>
+                    <img src="images/tangqiao1.png" alt="" class="img-responsive img-thumbnail" width="400" height="400" />
+                    <img src="images/tangqiao2.jpg" alt="" class="img-responsive img-thumbnail" width="600" height="400" />
+                    <p class="p-resize">* 2015年9月17日下午，乌云知识库、以及国外安全公司palo alto相继发布初步分析报告。</p>
+                    <p class="p-resize">乌云知识库: <a href="http://drops.wooyun.org/news/8864" target="_blank">Xcode编译器里有鬼 – XcodeGhost样本分析</a></p>
+                    <p class="p-resize">palo alto: <a href="http://researchcenter.paloaltonetworks.com/2015/09/novel-malware-xcodeghost-modifies-xcode-infects-apple-ios-apps-and-hits-app-store/" target="_blank">NOVEL MALWARE XCODEGHOST MODIFIES XCODE, INFECTS APPLE IOS APPS AND HITS APP STORE</a></p>
+                    <p class="p-resize">(从字里行间看，palo alto似乎与国内安全团队有合作，因而较早地知晓了此事，从Google搜索中也可看出很多英文网站在报道XcodeGhost事件时，也引用了palo alto的报告)</p>
+                    <p class="p-resize">* 2015年9月18日，一部分受感染的app名单被公布，许多知名app中招。</p>
+                    <p class="p-resize">* 2015年9月18日下午至晚上，一些app开发商发布声明确认受到影响，声明中显示目前攻击者的服务器已经关闭。</p>
+                    <p class="p-resize">* 2015年9月18日晚上，陆续有对于XcodeGhost的分析文章发布，文章列表参阅<a href="#attach-a">附录A</a>。</p>
+                    <p class="p-resize">* 2015年9月19日凌晨04:40分，有微博名为@XcodeGhost-Author的作者发布微博声明，自称是XcodeGhost作者，说此次事件只是一次实验而已，说并没有做过分的事情，并在github上放出了相关源代码。</p>
+                    <img src="images/xg-author1.jpg" alt="" class="img-responsive img-thumbnail" width="500" height="400" />
+                    <img src="images/xg-author2.jpg" alt="" class="img-responsive img-thumbnail" width="400" height="300" />
+                    <p class="p-resize">(注1：仔细查看该微博后，发现一些细节问题，比如注册时间、30个关注等，详见<a href="#attach-b">附录B</a>)</p>
+                    <p class="p-resize">(注2：似乎在2015年9月19日凌晨3点多时，作者身份被初步挖掘出来并在微博上发布，详见<a href="#attach-b">附录B</a>)</p>
+                    <p class="p-resize">GitHub上放出的源码: <a href="https://github.com/XcodeGhostSource/XcodeGhost" target="_blank">https://github.com/XcodeGhostSource/XcodeGhost</a> (注册时间为2015年9月19日)</p>
+                    <p class="p-resize">* 之后苹果公司对受感染应用下架。同时，不断有最新分析报告逐一出炉，详见<a href="#attach-a">附录A</a>。</p>
+                    <p class="p-resize">(事件回顾 完)</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="attach-a">附录A：<span class="label label-primary">搜集的各种分析报告、资料一览表</span></h1>
+                    <br/>
+                    <p class="p-resize">* <a href="http://www.cert.org.cn/publish/main/12/2015/20150914152821158428128/20150914152821158428128_.html" target="_blank">关于使用非苹果官方XCODE存在植入恶意代码情况的预警通报</a></p>
+                    <p class="p-resize">* <a href="http://www.cert.org.cn/publish/main/98/2015/20150312144300960510161/20150312144300960510161_.html" target="_blank">美政府被曝用黑客手段破解苹果设备近10年</a></p>
+                    <p class="p-resize">* <a href="http://drops.wooyun.org/news/8864" target="_blank">Xcode编译器里有鬼 – XcodeGhost样本分析 _ WooYun知识库</a></p>
+                    <p class="p-resize">* <a href="http://security.tencent.com/index.php/blog/msg/96" target="_blank">你以为这就是全部了？我们来告诉你完整的XCodeGhost事件</a></p>
+                    <p class="p-resize">* <a href="http://www.oschina.net/news/66349/xcodehost-roundup" target="_blank">XcodeGhost 事件全面详细回顾</a></p>
+                    <p class="p-resize">* <a href="http://researchcenter.paloaltonetworks.com/2015/09/novel-malware-xcodeghost-modifies-xcode-infects-apple-ios-apps-and-hits-app-store/" target="_blank">NOVEL MALWARE XCODEGHOST MODIFIES XCODE, INFECTS APPLE IOS APPS AND HITS APP STORE</a></p>
+                    <p class="p-resize">* <a href="http://researchcenter.paloaltonetworks.com/2015/09/malware-xcodeghost-infects-39-ios-apps-including-wechat-affecting-hundreds-of-millions-of-users/" target="_blank">Malware XcodeGhost Infects 39 iOS Apps, Including WeChat, Affecting Hundreds of Millions of Users</a></p>
+                    <p class="p-resize">* <a href="http://researchcenter.paloaltonetworks.com/2015/09/update-xcodeghost-attacker-can-phish-passwords-and-open-urls-though-infected-apps/" target="_blank">Update: XcodeGhost Attacker Can Phish Passwords and Open URLs through Infected Apps</a></p>
+                    <p class="p-resize">* <a href="http://www.freebuf.com/articles/terminal/78808.html" target="_blank">Xcode木马样本分析及被挂马的红包插件</a></p>
+                    <p class="p-resize">* <a href="http://www.freebuf.com/news/78862.html" target="_blank">迷雾重重：XcodeGhost究竟是恶意病毒还是“无害的实验”？</a></p>
+                    <p class="p-resize">* <a href="http://drops.wooyun.org/papers/8973" target="_blank">涅槃团队：Xcode幽灵病毒存在恶意下发木马行为</a></p>
+                    <p class="p-resize">* <a href="http://blog.codingnow.com/2015/09/xcodeghost.html" target="_blank">说说 XcodeGhost 这个事</a></p>
+                    <p class="p-resize">* <a href="http://weibo.com/p/1001603889454044583522" target="_blank">XCodeGhost：信息分享及企业防护建议</a></p>
+                    <p class="p-resize">* <a href="http://www.leiphone.com/news/201509/Q6MWlts9zKEyX0HV.html" target="_blank">XcodeGhost：墙、感染、信任和欺骗</a></p>
+                    <p class="p-resize">* <a href="http://mobile.pconline.com.cn/697/6974076.html" target="_blank">XcodeGhost探秘:苹果栽在了源码病毒手里</a></p>
+                    <p class="p-resize">* <a href="http://www.cultofmac.com/389703/faq-everything-you-need-to-know-about-the-xcodeghost-app-store-hack/" target="_blank">FAQ: Everything you need to know about the XcodeGhost App Store hack</a></p>
+                    <p class="p-resize">* <a href="http://www.bbc.com/news/technology-34311203" target="_blank">Apple's App Store infected with XcodeGhost malware in China</a></p>
+                    <p class="p-resize">* <a href="http://www.macrumors.com/2015/09/20/xcodeghost-chinese-malware-faq/" target="_blank">What You Need to Know About iOS Malware XcodeGhost</a></p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="attach-b">附录B：<span class="label label-primary">微博账户分析、git log查看、疑似作者身份被曝光</span></h1>
+                    <br/>
+                    <p class="p-resize">* 微博账户分析</p>
+                    <img src="images/xg-author3.png" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <img src="images/xg-author4.jpeg" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <p class="p-resize">* 第一张图，注册日期为2015年9月17日，正是XcodeGhost事件快速升温的当天。</p>
+                    <p class="p-resize">* 第二张图，某网站报道时给出的手机截图，可看出手机时间为10:01分，微博显示5小时前该作者发布微博。根据网络报道，作者发布微博时间是在2015年9月19日凌晨04:40。</p>
+                    <p class="p-resize">* 还是第二张图，作者@了几个微博，除了@唐巧_boy(事件升温的开始)、@Saic(9月18日发布了文章《XcodeGhost 实际用途猜测分析》)、和一些安全团队的微博之外，还@了3个知名博主，据悉这3名博主均有相应的IT背景。</p>
+                    <p class="p-resize p-delete">* 还是第二张图，微博封面不一致？(更新：微博的封面虽然不一样，但是目前已知手机微博默认封面与网页微博默认封面确实不一致，且截至2015年9月21日这2处平台微博封面并没有变化，因此本条可忽略。)
+                    <p class="p-resize">* 还是第二张图，可以看出其关注了30个微博，其中有IT类、资讯类、娱乐类等等，以下为这30个微博列表。</p>
+                    <img src="images/xg-author-focus1.png" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <img src="images/xg-author-focus2.png" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <img src="images/xg-author-focus3.png" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <img src="images/xg-author-focus4.png" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <img src="images/xg-author-focus5.png" alt="" class="img-responsive img-thumbnail" width="300" height="500" />
+                    <p class="p-resize">* 结合以上资料，是否可以进行如下推测：</p>
+                    <p class="p-resize">2015年9月17日XcodeGhost事件升温后，作者于当天注册了一个微博账号，并关注了以上30个微博来获取一定的信息；</p>
+                    <p class="p-resize">由于微博名称是可以更改的，至于作者是否在注册时就是用了@XcodeGhost-Author这个名字、还是之后改的，尚无法确定；</p>
+                    <p class="p-resize">可以确定的是，作者确实也同时在关注这件事情在网络上的发展，所以他知道@唐巧_boy和@Saic；</p>
+                    <p class="p-resize">至于作者在最初是否就有意公开源代码，尚不明确，理由是虽然微博于9月17日注册，但github是在9月19日注册的，与其正式公布澄清为同一天；</p>
+                    <p class="p-resize">并且在2015年9月19日凌晨3点左右，有人公布了疑似作者的信息；之后在4点40分时，XcodeGhost作者就发布了澄清，这两者之间是否有联系？</p>
+                    <p class="p-resize">疑问在于，为何在微博上关注了2天后才开始澄清？又为何在他人公布了疑似作者信息后，XcodeGhost作者就立刻公布澄清呢？原因尚不明确。</p>
+                    <p class="p-resize">* git log 记录</p>
+                    <img src="images/xg-git-log.jpg" alt="" class="img-responsive img-thumbnail" width="400" height="500" />
+                    <p class="p-resize">从其公布的源码中记录的 git log 来看，也是在2015年9月19日凌晨那段时间才commit的。</p>
+                    <p class="p-resize">(可以注意到其使用了不同的邮箱账户；另外也需注意，git log的时间是根据机器本地时间记录的，因此时间上可以被伪造)</p>
+                    <p class="p-resize">* 疑似作者身份被曝光：</p>
+                    <p class="p-resize">2015年9月19日凌晨3点左右，有人曝出疑似作者的部分信息，如下图：</p>
+                    <img src="images/xg-author-info.png" alt="" class="img-responsive img-thumbnail" width="300" height="400" />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="attach-c">附录C：<span class="label label-primary">斯诺登释出的有关Xcode后门植入的文件</span></h1>
+                    <br/>
+                    <p class="p-resize">* 维基解密(WikiLeaks)于2015年3月10日公开了一份由斯诺登(Edward Snowden)提供的文件；</p>
+                    <p class="p-resize">* 文件内容中包含CIA用Xcode的修改版本向苹果App Store中的应用植入后门的研究成果，同时NSA也参与其中。</p>
+                    <img src="images/snowden-doc-xcode-backdoor.jpg" alt="" class="img-responsive img-thumbnail" width="1200" height="1000" />
+                    <p class="p-resize">* 国家互联网应急中心也曾发布过相应的报道，下图：</p>
+                    <img src="images/cncert-xcode-cia-nsa.jpg" alt="" class="img-responsive img-thumbnail" width="800" height="900" />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="attach-d">附录D：<span class="label label-primary">被公布的XcodeGhost源代码文件</span></h1>
+                    <p class="p-resize">* GitHub地址: <a href="https://github.com/XcodeGhostSource/XcodeGhost">https://github.com/XcodeGhostSource/XcodeGhost</a></p>
+                    <p class="p-resize">* 本地下载: <a href="archives/XcodeGhost.tar.gz">XcodeGhost.tar.gz</a></p>
+                    
+                    <br />
+                    <h1><span class="label label-primary">(The End)</span></h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="disqus_content">
+                        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'xcodeghostreview';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

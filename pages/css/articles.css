@@ -1,0 +1,16 @@
+/*
+The MIT License (MIT)
+Copyright (c) 2014 lngost
+See http://opensource.org/licenses/MIT
+
+Author @lngost
+*/
+
+body {
+    font-family: Verdana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}

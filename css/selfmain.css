@@ -1,0 +1,178 @@
+/*
+The MIT License (MIT)
+Copyright (c) 2014 lngost
+See http://opensource.org/licenses/MIT
+
+Author @lngost
+*/
+
+html,body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: Verdana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+}
+
+a:hover,
+a:link,
+a:visited {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* ===================================================== */
+
+.super-container-content {
+    background: #eeeeee;
+    min-height: 100%;
+    margin-top: 0;
+    margin-bottom: -17em;
+}
+
+/* ===================================================== */
+
+.container-title {
+    background: #29b6f6;
+    width: 100%;
+    height: 10em;
+    margin: 0 auto;
+}
+
+#myCanvas {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; 
+}
+
+/* ===================================================== */
+
+.space {
+    width: 100%;
+    height: 3em;
+}
+
+.menu_nav {
+    background: #ffffff;
+    box-shadow: 0em 0.5em 1em -0.2em #A1A1A1;
+}
+
+.lan_option {
+    font-size: 1.5em;
+    position: absolute;
+    z-index: 100;
+    margin: 5%;
+}
+
+#menu_photo {
+    margin: 5% auto;
+}
+
+.spacediv {
+    width: 4em;
+    height: 1em;
+
+}
+
+/* ===================================================== */
+
+#carousel-main {
+    width: 100%;
+    height: 20em;
+    background: #FFFFFF;
+}
+
+.carousel-inner img {
+    margin: 0 auto;
+}
+
+/* ===================================================== */
+
+.thumbnail_div {
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 0em 0.5em 1em -0.2em #A1A1A1;
+    text-align: left;
+}
+
+.thumbnail_div .thumbnail_divson {
+    height: 19em;
+}
+
+.thumbnail_div .thumbnail_container {
+    height: 100%;
+}
+
+.thumbnail_div .thumbnail {
+    height: 92%;
+    position: relative;
+}
+
+.thumbnail_div img {
+    margin-top: 0.5em;
+}
+
+.thumbnail_div .lan-version {
+    padding-bottom: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+
+.push {
+    width: 100%;
+    height: 19em;
+}
+
+/* ===================================================== */
+
+.super-container-tail {
+    background: #212121;
+    width: 100%;
+    height: 19em;
+    color: #eeeeee;
+}
+
+.super-container-tail .row {
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.super-container-tail h4 {
+    display: inline-block;
+}
+
+#mysign {
+    text-align: right;
+}
+
+#license img{
+    margin-left: 30%;
+}
+
+/* ===================================================== */
+
+#theInnerFrame {
+    width: 100%;
+    height: 42em;
+}
+
+#frame-centre-main {
+    width: 100%;
+    height: 100%;
+}
+
+/* ===================================================== */
+
+
+/* the hr style */
+.hrstyle {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));
+}
+/* end of the hr style */

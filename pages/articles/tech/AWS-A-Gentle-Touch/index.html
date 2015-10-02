@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!--
+The MIT License (MIT)
+Copyright (c) 2014 lngost
+See http://opensource.org/licenses/MIT
+
+Author @lngost
+-->
+<html>
+    <head>
+        <title>AWS - A Gentle Touch</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Amazon Web Services - A Genlte Touch">
+        <meta name="description" content="亚马逊云计算服务 - 初窥门径">
+        
+        <link rel="shortcut icon" href="../../../../images/myL.ico"/> <!-- The shortcut icon -->
+        
+        <!-- Import third party plugins -->
+        <script type="text/javascript" src="../../../../js/jquery-1.11.1.min.js"></script> <!-- http://jquery.com/ -->
+        <script type="text/javascript" src="../../../../js/jquery-migrate-1.2.1.min.js"></script> <!-- http://jquery.com/ -->
+        <link rel="stylesheet" href="../../../../css/animate.css" /> <!-- http://daneden.github.io/animate.css/ -->
+        <script type="text/javascript" src="../../../../js/jquery.storageapi.min.js"></script> <!-- http://github.com/julien-maurel/jQuery-Storage-API/ -->
+        
+        <link rel="stylesheet" href="../../../../bootstrap-3.2.0-dist/css/bootstrap.min.css" /> <!-- http://getbootstrap.com/ -->
+        <script src="../../../../bootstrap-3.2.0-dist/js/bootstrap.min.js"></script> <!-- http://getbootstrap.com/ -->
+        <!-- End of third party plugins -->
+        
+        <!-- Import self css and js files -->
+        <script type="text/javascript" src="../../../../js/my-language-jquery.js"></script>
+        <!-- End of self files -->
+        
+        <script>
+            $(document).ready(function() {
+                /* page onload */
+                $('.mytips').hide();
+                $('#tipbutton-collapseAll').hide();
+                /* end of page onload */
+                
+                showTip('#tipbutton-signup','#tip-signup');
+                showTip('#tipbutton-vpc','#tip-vpc');
+                showTip('#tipbutton-ec2','#tip-ec2');
+                showTip('#tipbutton-region','#tip-region');
+                showTip('#tipbutton-ami','#tip-ami');
+                showTip('#tipbutton-img-why','#tip-img-why');
+                showTip('#tipbutton-insType','#tip-insType');
+                showTip('#tipbutton-addStorage','#tip-addStorage');
+                
+                $('#tipbutton-expandAll').click(function() {
+                    $('#tipbutton-expandAll').hide();
+                    $('.tip-button-group-in-div').hide();
+                    $('#tipbutton-collapseAll').show();
+                    $('.mytips').show();
+                });
+                
+                $('#tipbutton-collapseAll').click(function() {
+                    $('#tipbutton-collapseAll').hide();
+                    $('.tip-button-group-in-div').show();
+                    $('#tipbutton-expandAll').show();
+                    $('.mytips').hide();
+                });
+
+            });
+            
+            function showTip(button, tipArea) {
+                $(button).click(function() {
+                    $(button).hide();
+                    $(tipArea).show();
+                    $('#tipbutton-expandAll').hide();
+                    $('#tipbutton-collapseAll').show();
+                });
+            }
+        </script>
+        
+        <style>
+            body {
+                font-family: Verdana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+            }
+            
+            a:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+            
+            .p-resize {
+                font-size: 1.5em;
+            }
+            
+            .tip-button-group {
+                padding-bottom: 1em;
+            }
+            
+            pre {
+                overflow: auto;
+                word-wrap: normal;
+                white-space: pre;
+            }
+            
+            .disqus_content #disqus_thread {
+                width: 96%;
+                margin: 2% auto;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class="content-main">
+            <div class="container">
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ol class="breadcrumb language_en">
+                            <li><a href="../../../../" target="_top">Home</a></li>
+                            <li class="bread-li-tech"><a href="../../../articles.html" target="_top">Article - Technology</a></li>
+                            <li class="active">AWS - A Gentle Touch</li>
+                        </ol>
+                        <ol class="breadcrumb language_cn">
+                            <li><a href="../../../../" target="_top">主页</a></li>
+                            <li class="bread-li-tech"><a href="../../../articles.html" target="_top">技术文章</a></li>
+                            <li class="active">亚马逊云计算服务 - 初窥门径</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id="enButton"><h5>English <span class="glyphicon glyphicon-ok"></span></h5></a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id="cnButton"><h5>简体中文 <span class=""></span></h5></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row language_en">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <br/>
+                        <div class="alert alert-info" role="alert"><strong>Ooops!</strong> Have no EN version right now... </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <br/>
+                        <div class="jumbotron">
+                            <img src="../../../../images/amazon-web-services-logo.png" alt="amazon web services" width="185" height="70">
+                            <h2>亚马逊云计算服务 - 初窥门径</h2>
+                            <p>亚马逊云计算（<strong>AWS</strong>）是一个基于 <strong>IaaS</strong>（基础架构即服务）的云计算服务</p>
+                            <p>我们可以以此建立一个部署在云上的服务器，来实现个人或业务的需求</p>
+                            <p>这里我们利用亚马逊提供的免费试用额度，部署一个 虚拟私有云(VPC) 中的服务器</p>
+                            <p>同时还能享受亚马逊的强大带宽，快来看看能做些什么吧！</p>
+                            
+                            <p><small>语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></small></p>
+                            <p><small>发布日期：2014-11-09</small></p>
+                            <p><small>更新日期：2014-11-13</small></p>
+                            <p><small>作者：<em>lngost</em></small></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="input-group">
+                            <span class="input-group-addon">URL</span>
+                            <input type="url" class="form-control" value="https://lngost.github.io/pages/articles/tech/AWS-A-Gentle-Touch/" readonly>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-7 col-md-7">
+                        <h1><span class="label label-primary">目录</span></h1>
+                        <div class="list-group">
+                            <a href="#sign-in-aws" class="list-group-item"><p class="p-resize">1. 从注册账号开始</p></a>
+                            <a href="#launch-aws" class="list-group-item"><p class="p-resize">2. Amazon EC2 - 创建 EC2实例</p></a>
+                            <a href="#ssh-aws" class="list-group-item"><p class="p-resize">3. SSH 登录 EC2实例</p></a>
+                            <a href="#attach-next" class="list-group-item"><p class="p-resize">附件 - 接下来干什么？</p></a>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div><button type="button" class="btn btn-success btn-lg" id="tipbutton-expandAll">展开所有小贴士 <span class="glyphicon glyphicon-circle-arrow-down"></span></button></div>
+                        <div><button type="button" class="btn btn-success btn-lg" id="tipbutton-collapseAll">收起所有小贴士 <span class="glyphicon glyphicon-circle-arrow-up"></span></button></div>
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1 id="sign-in-aws">1. <span class="label label-primary">从注册账号开始</span></h1>
+                        <br/>
+                        <p class="p-resize">(a) 进入 <a href="https://aws.amazon.com/cn/" target="_blank">亚马逊云计算服务 - 简体中文</a></p>
+                        <p class="p-resize">(b) 完成注册过程</p>
+                        <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-signup">查看提示</button></div>
+                        <div class="alert alert-success mytips" role="alert" id="tip-signup">
+                            <p class="p-resize">* 注册需要一些个人信息，最重要的应该就是带有 Visa 或者 Master 标识的银行卡（信用卡）</p>
+                            <p class="p-resize">* 即便是仅使用免费试用额度，也需绑定该卡，默认是根据按需付费</p>
+                            <p class="p-resize">* 故在使用前请仔细了解收费细则（仔细查阅官网，收费标准均有罗列），因为一不小心就可能引起扣费</p>
+                            <p class="p-resize">* 可以看看网络上的其他人写的文章，也可以使用亚马逊官方提供的<a href="https://calculator.s3.amazonaws.com/calc5.html" target="_blank">简单月度成本结算器</a></p>
+                        </div>
+                        <p class="p-resize">(c) 完成注册并登陆后，进入 AWS Management Console</p>
+                        <p class="p-resize">(d) 选择相应的服务即可，这里我们从 EC2 开始入手</p>
+                        <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-ec2">什么是 EC2 ?</button></div>
+                        <div class="alert alert-success mytips" role="alert" id="tip-ec2">
+                            <p class="p-resize">* Amazon EC2，即 Amazon Elastic Compute Cloud（亚马逊弹性计算云）</p>
+                            <p class="p-resize">* 官方网站上有详细介绍</p>
+                            <p class="p-resize">* 个人理解就是亚马逊提供了一组虚拟的CPU、内存、存储设备等等，并根据不同的处理能力收费</p>
+                            <p class="p-resize">&nbsp;&nbsp;&nbsp;与此同时，还能与亚马逊提供的其他云组件进行信息交换，好比一台虚拟的计算机（服务器）</p>
+                            <p class="p-resize">&nbsp;（话虽这么说，但是并不是说就真的分配一台计算机给你让你捣腾，请自行查阅：云 和 虚拟专用服务器(VPS) 的区别）</p>
+                            <p class="p-resize">* 每一个这样的 "计算机 / 服务器" 称为一个 "EC2 实例"</p>
+                        </div>
+                        <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-vpc">为什么部署在 虚拟私有云(VPC) 上?</button></div>
+                        <div class="alert alert-success mytips" role="alert" id="tip-vpc">
+                            <p class="p-resize">* 从2013年3月18日起，新注册的用户将拥有一个 默认VPC，并且所创建的 EC2实例 将默认建在该 VPC 中</p>
+                            <p class="p-resize">* VPC 相比 公有云 能提供更多高级安全功能</p>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1 id="launch-aws">2. <span class="label label-primary">Amazon EC2</span></h1>
+                        <h1><span class="label label-primary">创建 EC2实例</span></h1>
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-7 col-md-7">
+                                <p class="p-resize">(a) 在点击进入 EC2 之前，先选择部署所在的区域(Region)</p>
+                                <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-region">不同区域(Region)的区别？</button></div>
+                                <div class="alert alert-success mytips" role="alert" id="tip-region">
+                                    <p class="p-resize">* 选择区域，就是选择亚马逊在地里位置上的服务器</p>
+                                    <p class="p-resize">* 比如，选择"Tokyo"，就是选择了亚马逊位于东京的服务器</p>
+                                    <p class="p-resize">* 之后我们所部署的云组件（比如一个EC2实例）就位于亚马逊东京的服务器上了</p>
+                                    <p class="p-resize">* 选择合适的地区还是比较重要的，举例如下：</p>
+                                    <p class="p-resize">&nbsp;&nbsp;&nbsp;(1) 客户主要面向澳大利亚，那么选择"Sydney"比较合适，客户使用你提供的服务时，网络延迟相对较低；</p>
+                                    <p class="p-resize">&nbsp;&nbsp;&nbsp;(2) 用户面向自己，比如中国地区的用户，通常选择"Tokyo"能获得较低的网络延迟。</p>
+                                    <p class="p-resize">&nbsp;&nbsp;&nbsp;（目前亚马逊没有在中国的服务器，不过新闻说已经落地准备开建了？）</p>
+                                    <p class="p-resize">* 另外，不同区域的收费是不一样的，目前看来，东京区域的收费普遍略高，如果是免费额度的话到无所谓了</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-5 col-md-5">
+                                <img src="images/aws-region.png" alt="aws region" class="img-thumbnail" width="400" height="700">
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(b) 选择 "EC2" 进入 EC2 Dashboard</p>
+                                <img src="images/aws-ec2-choose.png" alt="aws ec2 choose" class="img-thumbnail" width="300" height="300">
+                                <img src="images/aws-ec2-dashboard.png" alt="aws ec2 choose" class="img-thumbnail" width="800" height="800">
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(c) 创建实例（Launch Instance）</p>
+                                <img src="images/aws-launch-instance.png" alt="aws launch instance" class="img-thumbnail" width="600" height="700">
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-7 col-md-7">
+                                <p class="p-resize">(d) 在"Quick Start"一栏选择要安装的 AMI</p>
+                                <p class="p-resize">（免费试用请勾选"Free tier only"以筛选可免费使用与运行的镜像）</p>
+                                <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-ami">什么是 AMI ?</button></div>
+                                <div class="alert alert-success mytips" role="alert" id="tip-ami">
+                                    <p class="p-resize">* AMI - Amazon Machine Image，详细解释请参考官网</p>
+                                    <p class="p-resize">* 个人理解就是一个操作系统的镜像，可以运行在 EC2实例 上</p>
+                                    <p class="p-resize">* 如需其他的镜像，可相应选择左边的标签，如下图：</p>
+                                    <img src="images/aws-ami-choose.png" alt="aws ami choose" class="img-thumbnail" width="200" height="400">
+                                    <p class="p-resize">* 其中的软件通常分为免费、收费，并且都额外收取运行时费用（意味着，即便是开源的软件，运行在 EC2实例 上时，也是需要额外收取运行费的）</p>
+                                    <p class="p-resize">* 标有"Free tier eligible"的镜像则免收授权与运行费（也就是一分不收！）</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-5 col-md-5">
+                                <img src="images/aws-ami-list.png" alt="aws ami list" class="img-thumbnail" width="400" height="400">
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(e) 这里我们选择 "Ubuntu Server 14.04 LTS (HVM), SSD Volume Type"， 64-bit</p>
+                                <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-img-why">为什么选择这个镜像？</button></div>
+                                <div class="alert alert-success mytips" role="alert" id="tip-img-why">
+                                    <p class="p-resize">* 大牛请忽略这个小贴士...</p>
+                                    <p class="p-resize">* Ubuntu 是基于 Debian GNU/Linux 的发布版（distribution），初次接触 Linux 时这个比较好入门</p>
+                                    <p class="p-resize">* HVM - Hardware Virtual Machine 全虚拟化，与之相对应的是 PV - Paravirtual 半虚拟化</p>
+                                    <p class="p-resize">* SSD Volume Type - 支持的卷类型</p>
+                                    <p class="p-resize">* 在此处创建实例后，亚马逊提供的系统镜像默认是没有桌面环境的，只有命令行</p>
+                                    <p class="p-resize">* 我们将通过 ssh 来远程登录到该云主机进行操作</p>
+                                    <p class="p-resize">* 镜像中也有 Windows Server 可供选择，需注意安装容量是否超出 EBS卷 的免费额度大小（有关 EBS卷 请继续看下文）</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(f) 接着选择实例类型</p>
+                                <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-insType">应该选哪个？</button></div>
+                                <div class="alert alert-success mytips" role="alert" id="tip-insType">
+                                    <p class="p-resize">* 免费试用请选择带有"Free tier eligible"标签的实例类型</p>
+                                    <p class="p-resize">* Family - 对各个实例大类进行的分类，比如"普通实例"、"计算优化实例"、"内存优化实例"、"存储优化实例"等等</p>
+                                    <p class="p-resize">* Type - 按实例部件的组成进行细分，例如使用什么CPU，是否具有高I/O性能的存储等等</p>
+                                    <p class="p-resize">* vCPUs - 实例上 虚拟CPU 的数量</p>
+                                    <p class="p-resize">* Memory - 提供的内存大小</p>
+                                    <p class="p-resize">* Instance Storage - 实例存储大小</p>
+                                    <p class="p-resize">&nbsp;（注意：EC2 中的实例存储均为非持久性存储（写有 "n×m (SSD)" 字样），当实例关闭(stop) / 终止(terminate)后，数据即刻丢失）</p>
+                                    <p class="p-resize">&nbsp;（如何持久性存储数据：需在之后几步里分配 EBS卷 以用于数据的持久性存储，即实例关闭(stop)后，数据依旧保持）</p>
+                                    <p class="p-resize">&nbsp;（目前亚马逊推荐将 AMI 安装在 EBS卷，即将 EBS卷 作为 root device volume）</p>
+                                    <p class="p-resize">&nbsp;（所有写有"EBS only"的实例类型只能选择 EBS卷 用于存储，所以肯定为持久性存储）</p>
+                                    <p class="p-resize">* EBS-Optimized Available - EBS优化，为 EC2 和 EBS 之间提供专用传输通道，提高稳定性和吞吐量</p>
+                                    <p class="p-resize">&nbsp;（注：本来比较好理解的一个属性，被官网的中文翻译坑了...）</p>
+                                    <p class="p-resize">&nbsp;（原句是这样写的：提供 10% 以内的预配置 IOPS 性能。 各位看懂了吗？我最初的理解就是：怎么才提供 10% ？说好的优化呢？怎么还低了？）</p>
+                                    <p class="p-resize">&nbsp;（其实文档中是这么写的：within 10 percent of their provisioned performance。就是 "预配置性能 ± 10%"，就是上下10%以内的意思）</p>
+                                    <p class="p-resize">&nbsp;（妥妥地有歧义阿！不过在定价栏中到是把"波动幅度"给加进去了...）</p>
+                                    <p class="p-resize">* Network Performance - 网络性能</p>
+                                </div>
+                                <p class="p-resize">* EBS - Elastic Block Store，用于 EC2实例 的持久性数据块级存储卷</p>
+                                <img src="images/aws-ec2-instance-type.png" alt="aws ec2 instance type" class="img-thumbnail" width="1400" height="600">
+                                <p class="p-resize">* 关于那个 Network Performance，EC2实例 和 Internet 上的其他服务器相连是通过网络，但 EC2实例 和 其他云组件（比如 EBS卷）相连其实也是通过网络，到底指哪个？</p>
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(g) Configure Instance Details 此处免费试用的话直接点下一步即可</p>
+                                <p class="p-resize">* 提供了一些高级选项，也牵涉到收费项目，每个参数旁都提供说明了</p>
+                                <p class="p-resize">* 各位自己研究研究吧？</p>
+                                <img src="images/aws-instance-detail.png" alt="aws ec2 instance detail" class="img-thumbnail" width="600" height="400">
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(h) Add Storage</p>
+                                <div class="tip-button-group"><button type="button" class="btn btn-success tip-button-group-in-div" id="tipbutton-addStorage">我是新手我该怎么设置？</button></div>
+                                <div class="alert alert-success mytips" role="alert" id="tip-addStorage">
+                                    <p class="p-resize">* 免费试用额度允许总计 30GiB 的 EBS卷 容量，Linux系统的话，默认设置也够了</p>
+                                    <p class="p-resize">&nbsp;（GB & GiB ？请自行查阅）</p>
+                                    <p class="p-resize">* 免费试用请选择"General Purpose(SSD)"</p>
+                                    <p class="p-resize">&nbsp;（关于 EBS 里有一个 免费200万次I/O（磁性介质卷）的额度，如果选择了SSD的话这个无需关注）</p>
+                                    <p class="p-resize">&nbsp;（使用SSD不计算I/O次数，而使用"Magnetic"却还要计算I/O次数（超出还收费...），这是逼着我们用SSD的节奏？我们都知道SSD比传统硬盘性能强吧？亚马逊挺阔阿？）</p>
+                                </div>
+                                <img src="images/aws-add-storage.png" alt="aws ec2 add storage" class="img-thumbnail" width="1400" height="600">
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(i) Tag Instance</p>
+                                <p class="p-resize">* 给实例贴几个标签，让自己能分清楚哪个是干嘛的，直接跳过这步也OK</p>
+                                <p class="p-resize">* 比如可以这么写：</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Key</strong></td>
+                                                <td><strong>Value</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>my-ec2-a</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Owner</td>
+                                                <td>lngost</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Purpose</td>
+                                                <td>test</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Anything else?</td>
+                                                <td>Wooo~!! Hahhhhhh...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(j) Configure Security Group</p>
+                                <p class="p-resize">* 我们可以选择"Create a <strong>new</strong> security group"</p>
+                                <p class="p-resize">* 然后创建一个规则，比如下面这样：</p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Type</strong></td>
+                                                <td><strong>Protocol</strong></td>
+                                                <td><strong>Port Range</strong></td>
+                                                <td><strong>Source</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>SSH</td>
+                                                <td>TCP</td>
+                                                <td>22</td>
+                                                <td>Anywhere | 0.0.0.0/0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(k) 进入Review后，确认一下，没问题就点 Launch 吧</p>
+                                <p class="p-resize">* 按照我们的设置，页面上会提示有 Warning，现在不必理会</p>
+                                <p class="p-resize">* 这里我们弹出了一个对话框，关于 key pair 的，初次用的话当然新建一个拉~</p>
+                                <p class="p-resize">* 输入 key pair name 后需要 Download Key Pair，然后才能 Launch Instance</p>
+                                <p class="p-resize">* 然后跳转到了成功创建页面，点选"View Instance"查看我们创建的实例</p>
+                                <p class="p-resize">（一般的设置我没遇到过错误信息，所以如果这里没有创建成功的话...各位自己摸索吧...）</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <h1 id="ssh-aws">3. <span class="label label-primary">SSH 登录 EC2实例</span></h1>
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <p class="p-resize">(a) 找到之前下载的 key pair 文件：*.pem </p>
+                                <p class="p-resize">(b) 以下操作基于 Mac OS X 和 Linux，Windows用户自行查阅：PuTTY ssh使用</p>
+                                <p class="p-resize">(c) 确保你的 key pair 文件在你目前的工作目录下</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        
+<pre class="pre-scrollable">
+$ ls -l
+total 8
+-rw-r-----@ 1 lngost  staff  1692  8 Nov 21:07 lngost-my-ec2-a.pem
+</pre>
+                                        
+                                    </div>
+                                </div>
+                                <p class="p-resize">(d) 更改用户访问 key pair 文件的权限</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        
+<pre class="pre-scrollable">
+$ chmod 400 lngost-my-ec2-a.pem
+$ ls -l
+total 8
+-r--------@ 1 lngost  staff  1692  8 Nov 21:07 lngost-my-ec2-a.pem
+</pre>
+                                        
+                                    </div>
+                                </div>
+                                <p class="p-resize">(e) ssh登录（以下命令根据文档教程改写而来，请自行替换相关内容）</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        
+<pre class="pre-scrollable">
+$ ssh -i lngost-my-ec2-a.pem ubuntu@ec2-198-51-100-1.compute-1.amazonaws.com
+</pre>
+                                        
+                                    </div>
+                                </div>
+                                <p class="p-resize">* 命令格式：ssh -i <em>&lt;key_pair_file&gt;</em> <em>user_name</em>@<em>public_dns_name</em></p>
+                                <p class="p-resize">* <em>user_name</em> 会根据 AMI 的不同而有变化，这里我们安装的是 Ubuntu，所以用户名为 ubuntu 即可</p>
+                                <p class="p-resize">* <em>public_dns_name</em> 位于 "EC2 Dashboard - Instances" 里选择相应的实例即可查看到，如下图：</p>
+                                <img src="images/aws-public-dns.png" alt="aws ec2 public dns" class="img-thumbnail" width="500" height="300">
+                                <p class="p-resize">* 之后看到如下提示：</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-7 col-md-7">
+                                        
+<pre class="pre-scrollable">
+The authenticity of host 'ec2-198-51-100-1.compute-1.amazonaws.com (10.254.142.33)'
+can't be established.
+RSA key fingerprint is 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f.
+Are you sure you want to continue connecting (yes/no)?
+</pre>
+                                        
+                                    </div>
+                                </div>
+                                <p class="p-resize">* 输入 yes 并回车，即能成功登录</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1 id="attach-next">附件 - <span class="label label-primary">接下来干什么？</span></h1>
+                        <p class="p-resize">* 现在我们已经登录到这台云主机上了，就可以像在本地操作一样，配置运行环境以满足我们的需求</p>
+                        <p class="p-resize">
+                            * 比如，通过 wget 进行下载，利用亚马逊的带宽，你会发现，有时下载速度异常惊人，虽然只是下载在云主机上；
+                            之后通过 scp 再传输至本地计算机，同样利用其带宽消除下载的服务器端瓶颈，使整体下载的平均速度得以提高
+                        </p>
+                        <p class="p-resize">（需注意因数据传输而产生的费用，目前的免费额度是（每月），Internet至EC2 - 免费，EC2至Internet - 15GB的免费限额，超出部分按流量收费）</p>
+                        <p class="p-resize">* 再者，我们可以配置 LAMP，将我们的站点放上去</p>
+                        <p class="p-resize">* 还能做些什么？如下图：（懂的自然懂？国内的小伙伴已经成功连上咯~~）</p>
+                        <img src="images/aws-ec2-other.png" alt="" class="img-thumbnail" width="400" height="300">
+                        <p class="p-resize">（本来我是澳洲的，下图：）</p>
+                        <img src="images/aws-yu-before.png" alt="" class="img-thumbnail" width="300" height="200">
+                        <p class="p-resize">（设置完之后~~下图：）</p>
+                        <img src="images/aws-yu-after.png" alt="" class="img-thumbnail" width="300" height="200">
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1><span class="label label-primary">(The End)</span></h1>
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="disqus_content">
+                            <div id="disqus_thread"></div>
+                                <script type="text/javascript">
+                                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                                var disqus_shortname = 'awsagentletouch'; // required: replace example with your forum shortname
+                                var disqus_identifier = 'AWS-A-Gentle-Touch-Page';
+                                var disque_title = 'AWS-A-Gentle-Touch';
+                                var disqus_url = 'https://lngost.github.io/pages/articles/tech/AWS-A-Gentle-Touch/index.html';
+
+                                /* * * DON'T EDIT BELOW THIS LINE * * */
+                                (function() {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                
+               <br/>
+            </div>
+        </div>
+    </body>
+</html>

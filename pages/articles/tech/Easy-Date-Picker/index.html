@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<!--
+The MIT License (MIT)
+Copyright (c) 2015 lngost
+See http://opensource.org/licenses/MIT
+
+Author @lngost
+-->
+<html>
+    <head>
+        <title>Easy Date Picker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Easy Date Picker - html, js & css">
+        <meta name="description" content="简单日期选择器 - html, js & css">
+        
+        <link rel="shortcut icon" href="../../../../images/myL.ico"/> <!-- The shortcut icon -->
+        
+        <!-- Import third party plugins -->
+        <script type="text/javascript" src="../../../../js/jquery-1.11.1.min.js"></script> <!-- http://jquery.com/ -->
+        <script type="text/javascript" src="../../../../js/jquery-migrate-1.2.1.min.js"></script> <!-- http://jquery.com/ -->
+        <link rel="stylesheet" href="../../../../css/animate.css" /> <!-- http://daneden.github.io/animate.css/ -->
+        <script type="text/javascript" src="../../../../js/jquery.storageapi.min.js"></script> <!-- http://github.com/julien-maurel/jQuery-Storage-API/ -->
+        
+        <link rel="stylesheet" href="../../../../bootstrap-3.2.0-dist/css/bootstrap.min.css" /> <!-- http://getbootstrap.com/ -->
+        <script src="../../../../bootstrap-3.2.0-dist/js/bootstrap.min.js"></script> <!-- http://getbootstrap.com/ -->
+        <link rel="stylesheet" href="../../../../google-code-prettify/prettify.css" />
+        <script src="../../../../google-code-prettify/prettify.js"></script>
+        <!-- End of third party plugins -->
+        
+        <!-- Import self css and js files -->
+        <script type="text/javascript" src="../../../../js/my-language-jquery.js"></script>
+        <!-- End of self files -->
+        
+        <script>
+            
+            $(document).ready(function() {
+                prettyPrint();
+            });
+            
+        </script>
+        
+        <style>
+            
+            body {
+                font-family: Verdana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+            }
+            
+            a:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+            
+            .p-resize {
+                font-size: 1.5em;
+            }
+            
+            #calendar-frame {
+                width: 100%;
+                height: 430px;
+            }
+            
+            .disqus_content #disqus_thread {
+                width: 96%;
+                margin: 2% auto;
+            }
+            
+        </style>
+        
+    </head>
+    <body>
+        <div class="content-main">
+            <div class="container">
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ol class="breadcrumb language_en">
+                            <li><a href="../../../../" target="_top">Home</a></li>
+                            <li class="bread-li-tech"><a href="../../../articles.html" target="_top">Article - Technology</a></li>
+                            <li class="active">Easy Date Picker - html, js & css</li>
+                        </ol>
+                        <ol class="breadcrumb language_cn">
+                            <li><a href="../../../../" target="_top">主页</a></li>
+                            <li class="bread-li-tech"><a href="../../../articles.html" target="_top">技术文章</a></li>
+                            <li class="active">简单日期选择器 - html, js & css</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id="enButton"><h5>English <span class="glyphicon glyphicon-ok"></span></h5></a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" id="cnButton"><h5>简体中文 <span class=""></span></h5></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row language_en">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <br/>
+                        <div class="alert alert-info" role="alert"><strong>Ooops!</strong> Have no EN version right now... </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <br/>
+                        <div class="jumbotron">
+                            <img src="images/easy-date-picker.jpg" alt="easy date picker" width="100" height="70">
+                            <h2>简单日期选择器 - html, js & css</h2>
+                            <p>一直用着现成的日期选择器？</p>
+                            <p>到底这东西是怎么出来的？</p>
+                            <p>动手写一个！放下所有的现成！</p>
+                            <p>简单的日期选择器，只用简单的web技术</p>
+                            
+                            <p><small>语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></small></p>
+                            <p><small>发布日期：2015-03-06</small></p>
+                            <p><small>更新日期：2015-03-06</small></p>
+                            <p><small>作者：<em>lngost</em></small></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="input-group">
+                            <span class="input-group-addon">URL</span>
+                            <input type="url" class="form-control" value="https://lngost.github.io/pages/articles/tech/Easy-Date-Picker/" readonly>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-7 col-md-7">
+                        <h1><span class="label label-primary">目录</span></h1>
+                        <div class="list-group">
+                            <a href="#before-start" class="list-group-item"><p class="p-resize">1. 开始前的准备</p></a>
+                            <a href="#result-show" class="list-group-item"><p class="p-resize">2. 成品演示</p></a>
+                            <a href="#the-start" class="list-group-item"><p class="p-resize">3. 开始吧！</p></a>
+                            <a href="#a-html-part" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(a) 写出对应的html</p></a>
+                            <a href="#b-js-part" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(b) js部分逐步解析</p></a>
+                            <a href="#c-css-part" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(c) css部分</p></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1 id="before-start">1. <span class="label label-primary">开始前的准备</span></h1>
+                        <br/>
+                        <p class="p-resize">* 简单的web技术其实并不简单，只是前人已经做好了关键部分，所以有效利用吧！</p>
+                        <p class="p-resize">* Javascript Date 对象 是实现日期选择器的关键</p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td class="p-resize"><strong>方法</strong></td>
+                                        <td class="p-resize"><strong>描述</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Date()</td>
+                                        <td>返回当日的日期和时间</td>
+                                    </tr>
+                                    <tr>
+                                        <td>getFullYear()</td>
+                                        <td>获取四位数年份，例如2015</td>
+                                    </tr>
+                                    <tr>
+                                        <td>getMonth()</td>
+                                        <td>获取月份（0~11）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>getDate()</td>
+                                        <td>获取某一天（1~31）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>getDay()</td>
+                                        <td>获取星期数（0~6，0代表星期天）</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>（完整表格参见 <a href="http://www.w3school.com.cn/jsref/jsref_obj_date.asp" target="_blank">W3CSchool CN</a>）</p>
+                        <p class="p-resize">* 兼容性问题：</p>
+                        <p class="p-resize">&nbsp;&nbsp;(1) js方面全兼容，因为对于鼠标事件的响应，采用了html标签里的onclick属性，并未采用addEventListener；</p>
+                        <p class="p-resize">&nbsp;&nbsp;(2) css方面，只有2处需注意：box-shadow 支持IE9+；border-spacing 在定义了 !DOCTYPE 后支持 IE8+；</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1 id="result-show">2. <span class="label label-primary">成品演示</span></h1>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <iframe src="date-picker/calendar.html" frameborder="0" id="calendar-frame">浏览器不支持iframe</iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h1 id="the-start">3. <span class="label label-primary">开始吧！</span></h1>
+                        <br/>
+                        <p class="p-resize" id="a-html-part">(a) 写出对应的html</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+<pre class="prettyprint lang-html linenums">
+// html (final version) - by <em>lngost</em>
+
+&lt;div id="Calendar"&gt;
+
+    &lt;div id="Calendar-head"&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td id="Calendar-year"&gt;&lt;/td&gt;
+                &lt;td id="Calendar-month"&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;div id="Calendar-body"&gt;
+        &lt;table id="Calendar-table"&gt;&lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;div id="Calendar-tail"&gt;
+        &lt;div id="tip1"&gt;&lt;/div&gt;
+        &lt;div id="tip2" onclick="resetToToday();"&gt;Today&lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id="input-holder"&gt;
+    &lt;input type="text" name="datePicker" id="Calendar-date-input" size="25" maxlength="10" value="YYYY/MM/DD" readonly/&gt;
+&lt;/div&gt;
+</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4 col-md-4">
+                                <img src="images/frame1.jpg" alt="calendar frame1" class="img-thumbnail" />
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-4">
+                                <img src="images/frame2.jpg" alt="calendar frame2" class="img-thumbnail" />
+                            </div>
+                        </div>
+                        
+                        <p class="p-resize">* 除了下方的"Today"部分，其余均使用js生成，主要是因为具体日期是需要根据用户选择而动态生成的。</p>
+                        <br/>
+                        <p class="p-resize" id="b-js-part">(b) js部分逐步解析</p>
+                        <p class="p-resize">&nbsp;&nbsp;&nbsp;- step:1</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 col-md-8">
+<pre class="prettyprint lang-js linenums">
+// javascript - by <em>lngost</em>
+/*
+Step:1
+函数 Calendar() 是核心部分，主要包含了：
+（1）当前日期的获取：myDate = new Date();
+（2）年份与月份的全局变量：yearOnShow & monthOnShow
+（3）一些id选择器，例如 calendarYear，
+    通过使用 innerHTML 来改变显示的内容
+（4）用来显示年、月、日的函数：
+    displayYear();
+    displayMonth();
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+
+注：将显示年、月、日的代码分别封装入3个函数的目的，
+   是为了当用户改变年份和月份时，该部分代码可以通过函数直接调用，
+   提高代码复用率。
+*/
+
+function Calendar() {
+    /* init */
+    thead = "&lt;tr&gt;\
+                &lt;th&gt;Mon&lt;/th&gt;\
+                &lt;th&gt;Tue&lt;/th&gt;\
+                &lt;th&gt;Wed&lt;/th&gt;\
+                &lt;th&gt;Thu&lt;/th&gt;\
+                &lt;th&gt;Fri&lt;/th&gt;\
+                &lt;th&gt;Sat&lt;/th&gt;\
+                &lt;th&gt;Sun&lt;/th&gt;\
+            &lt;/tr&gt;";
+
+    myDate = new Date(); // get current date
+    yearOnShow = myDate.getFullYear(); // year displayed on calendar
+    monthOnShow = myDate.getMonth() + 1; // month displayed on calendar
+
+    /* id selector */
+    calendarYear = document.getElementById("Calendar-year");
+    calendarMonth = document.getElementById("Calendar-month");
+    calendarTable = document.getElementById("Calendar-table");
+    calendarDateInput = document.getElementById("Calendar-date-input");
+
+    /* display current Year and Month */
+    displayYear();
+    displayMonth();
+
+    /* display calendar table */
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+
+} // end of Calendar()
+</pre>
+                            </div>
+                        </div>
+                        <br/>
+                        <p class="p-resize">&nbsp;&nbsp;&nbsp;- step:2</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+<pre class="prettyprint lang-js linenums">
+// javascript - by <em>lngost</em>
+/*
+Step:2
+分别写出显示年、月、日的函数：
+（1）displayYear();
+显示年份的同时，加上左右2个箭头用来调整年份；
+并添加鼠标点击事件：onclick='preYear();' 和 onclick='nextYear();'
+
+（2）displayMonth();
+基本同上，显示月份的同时，加上箭头用来调整月份；
+不满2位数的月份前，加"0"补足。
+
+（3）displayCalendarTable(fullYear, month);
+稍显复杂的部分，若了解原理，代码就很容易了；
+原理如下：
+* 首先考虑日历可能产生的变化情况
+（规定第一行至少有一天是属于本月的）
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+或者是
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
+又或者是
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28
+又或者是
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28 29
+30 31
+以上四种，差不多是所有的极端情况了，可以看出，最少占用4行，最多占用6行；
+其余的所有情况，都会介于4~6行之间。
+因此，这里我们选取固定的6行，多出来的日期格子，我们可以让其显示相邻月份的日期。
+（这么做的好处，就是写一个for的6次循环就可以了）
+
+* 接着，计算出该月的1号所对应的是星期几，由于我们规定1号肯定是在第一行的，
+所以开头第一行第一列的对应的日期，也就不难出来了。
+注：比如设定了一个临时Date实例，var temp = new Date(2015, 3, 1)，也就是2015年4月1日；
+   当运行了 temp.setDate(temp.getDate() - 1) 之后，temp里的日期会自动变为2015年3月31日，十分智能。
+
+* 最后，需注意星期数排布的不同所带来的影响
+Sun Mon Tue Wed Thu Fri Sat
+和
+Mon Tue Wed Thu Fri Sat Sun
+在编程时也是需要注意的，因为getDay()里，0代表Sun
+*/
+
+function displayYear() {
+    calendarYear.innerHTML = "&lt;span id='Calendar-year-pre' onclick='preYear();'&gt;&lt;&lt;/span&gt;&nbsp;"
+                             + yearOnShow
+                             + "&nbsp;&lt;span id='Calendar-year-next' onclick='nextYear();'&gt;&gt;&lt;/span&gt;";
+}
+
+function displayMonth() {
+    var temp = "&lt;span id='Calendar-month-pre' onclick='preMonth();'&gt;&lt;&lt;/span&gt;&nbsp;";
+    if (monthOnShow &lt; 10) {
+        temp += "0" + monthOnShow;
+    } else {
+        temp += monthOnShow;
+    }
+    temp += "&nbsp;&lt;span id='Calendar-month-next' onclick='nextMonth();'&gt;&gt;&lt;/span&gt;";
+    calendarMonth.innerHTML = temp;
+}
+
+function displayCalendarTable(fullYear, month) {
+    /* calculate the date of the first day on calendar table */
+    var temp = new Date(fullYear, month, 1);
+    var dayOnFirst = temp.getDay();
+    if (dayOnFirst === 0) {
+        dayOnFirst = 7;
+    }
+    temp.setDate(temp.getDate() - dayOnFirst + 1);
+
+    /* count date */
+    tbody = "";
+    for (i = 0; i &lt; 6; i++) {
+        tbody += "&lt;tr&gt;";
+        for (j = 1; j &lt; 8; j++) {
+            if (temp.getFullYear() === myDate.getFullYear()
+                && temp.getMonth() === myDate.getMonth()
+                && temp.getDate() === myDate.getDate()
+                && yearOnShow === myDate.getFullYear()
+                && monthOnShow - 1 === myDate.getMonth()) {
+                tbody += "&lt;td class='today' onclick='chooseDate(" + temp.getDate() + ");'&gt;" + temp.getDate() + "&lt;/td&gt;";
+            } else if (temp.getMonth() === month) {
+                tbody += "&lt;td class='thisMonth' onclick='chooseDate(" + temp.getDate() + ");'&gt;" + temp.getDate() + "&lt;/td&gt;";
+            } else {
+                tbody += "&lt;td class='otherMonth'&gt;" + temp.getDate() + "&lt;/td&gt;";
+            }
+            temp.setDate(temp.getDate() + 1);
+        }
+        tbody += "&lt;/tr&gt;";
+    }
+
+    /* display calendar table */
+    calendarTable.innerHTML = thead + tbody;
+}
+</pre>
+                            </div>
+                        </div>
+                        <br/>
+                        <p class="p-resize">&nbsp;&nbsp;&nbsp;- step:3</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+<pre class="prettyprint lang-js linenums">
+// javascript - by <em>lngost</em>
+/*
+Step:3
+完善一些鼠标点击事件的函数：
+preYear();前一年
+nextYear();后一年
+preMonth();前一个月
+nextMonth();后一个月
+resetToToday();返回到今天
+chooseDate(date);在 &lt;input&gt; 里显示选中的日期
+*/
+
+function preYear() {
+    yearOnShow--;
+    displayYear();
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+}
+
+function nextYear() {
+    yearOnShow++;
+    displayYear();
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+}
+
+function preMonth() {
+    monthOnShow--;
+    if (monthOnShow < 1) {
+        yearOnShow--;
+        monthOnShow = 12;
+        displayYear();
+    }
+
+    displayMonth();
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+}
+
+function nextMonth() {
+    monthOnShow++;
+    if (monthOnShow > 12) {
+        yearOnShow++;
+        monthOnShow = 1;
+        displayYear();
+    }
+
+    displayMonth();
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+}
+
+function resetToToday() {
+    yearOnShow = myDate.getFullYear();
+    monthOnShow = myDate.getMonth() + 1;
+
+    displayYear();
+    displayMonth();
+    displayCalendarTable(yearOnShow, monthOnShow - 1);
+}
+
+function chooseDate(date) {
+    var dd;
+    if (date < 10) {
+        dd = "0" + date;
+    } else {
+        dd = date;
+    }
+
+    var mm;
+    if (monthOnShow < 10) {
+        mm = "0" + monthOnShow;
+    } else {
+        mm = monthOnShow;
+    }
+    calendarDateInput.value = yearOnShow + "/" + mm + "/" + dd;
+}
+</pre>
+                            </div>
+                        </div>
+                        <br/>
+                        <p class="p-resize">&nbsp;&nbsp;&nbsp;- step:4</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 col-md-8">
+<pre class="prettyprint lang-js linenums">
+// javascript - by <em>lngost</em>
+/*
+Step:4
+别忘了加上 window.onload
+*/
+
+window.onload = function() {
+    Calendar();
+};
+</pre>
+                            </div>
+                        </div>
+                        <br/>
+                        <p class="p-resize" id="c-css-part">(c) css部分</p>
+                        <p class="p-resize">* 这部分讲解起来就麻烦了，毕竟也不是一两个div就解决的东西。。。</p>
+                        <p class="p-resize">* 以下是我的源代码</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 col-md-8">
+<pre class="prettyprint lang-css linenums">
+// css - by <em>lngost</em>
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#Calendar {
+    width: 320px;
+    box-shadow: 5px 8px 8px #D0D0D0;
+    background: #F0F0F0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #F0F0F0;
+}
+
+#Calendar-head table {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    margin: 15px auto 5px;
+}
+
+#Calendar-year-pre:hover, 
+#Calendar-year-next:hover, 
+#Calendar-month-pre:hover, 
+#Calendar-month-next:hover {
+    cursor: pointer;
+}
+
+#Calendar-table {
+    width: 100%;
+    table-layout: fixed;
+    padding: 0 10px 5px;
+    border-spacing: 5px;
+}
+
+#Calendar-table th {
+    text-align: right;
+    height: 20px;
+}
+
+#Calendar-table td {
+    text-align: right;
+    height: 30px;
+    padding-right: 6px;
+}
+
+.today {
+    color: #FFFFFF;
+    background: #FF6633;
+}
+
+.today:hover {
+    cursor: pointer;
+}
+
+.thisMonth {
+    color: #000000;
+    background: #33FF33;
+}
+
+.thisMonth:hover {
+    cursor: pointer;
+    background: #FFFF00;
+}
+
+.otherMonth {
+    color: #C8C8C8;
+    background: #FFFFFF;
+}
+
+#Calendar-tail {
+    width: 100%;
+    height: 50px;
+}
+
+#tip1 {
+    background: #FF6633;
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    float: left;
+}
+
+#tip2 {
+    width: 50px;
+    line-height: 30px;
+    float: left;
+    margin-left: 8px;
+}
+
+#tip2:hover {
+    cursor: pointer;
+}
+
+#input-holder {
+    margin-top: 20px;
+}
+
+#input-holder input {
+    font-size: 24px;
+}
+</pre>
+                            </div>
+                        </div>
+                        <br/>
+                        <h1><span class="label label-primary">(The End)</span></h1>
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="disqus_content">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript">
+                                /* * * CONFIGURATION VARIABLES * * */
+                                var disqus_shortname = 'easydatepicker';
+                                var disqus_identifier = 'Easy-Date-Picker';
+                                var disque_title = 'Easy-Date-Picker';
+                                var disqus_url = 'https://lngost.github.io/pages/articles/tech/Easy-Date-Picker/index.html';
+
+    
+                                /* * * DON'T EDIT BELOW THIS LINE * * */
+                                (function() {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                
+            </div>
+        </div>
+    </body>
+</html>

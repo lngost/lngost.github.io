@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+The MIT License (MIT)
+Copyright (c) 2014 lngost
+See http://opensource.org/licenses/MIT
+
+Author @lngost
+-->
+<html>
+    <head>
+        <title>Calendar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="calendar.js"></script>
+        <link rel="stylesheet" href="calendar.css" />
+    </head>
+    <body>
+        <div id="Calendar">
+            <div id="Calendar-head">
+                <table>
+                    <tr>
+                        <td id="Calendar-year"></td>
+                        <td id="Calendar-month"></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Calendar-body">
+                <table id="Calendar-table">
+                </table>
+            </div>
+            <div id="Calendar-tail">
+                <div id="tip1"></div>
+                <div id="tip2"  onclick="resetToToday();">Today</div>
+            </div>
+        </div>
+        
+        <div id="input-holder">
+            <input type="text" name="datePicker" id="Calendar-date-input" size="25" maxlength="10" value="YYYY/MM/DD" readonly/>
+        </div>
+    </body>
+</html>

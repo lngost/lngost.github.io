@@ -1,0 +1,68 @@
+/* 
+ * Author: lngost
+ * See <https://lngost.github.io>
+ */
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #212121;
+}
+
+.green {
+    color: #66BB6A;
+}
+
+.red {
+    color: #D50000;
+}
+
+.yellow {
+    color: #FFFF00;
+}
+
+.blue {
+    color: #2196F3;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.terminal {
+    background: #212121;
+    height: 300px;
+    padding: 0 0 0 5px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border: 2px ridge #9E9E9E;
+    border-radius: 10px;
+    box-shadow: 5px 6px 8px #607D8B;
+}
+
+.terminal p {
+    //font: 16px 'Lucida Console', Monaco, monospace;
+    font: 16px 'Courier New', Courier, monospace;
+    line-height: 30%;
+    color: #FFFFFF;
+}
+
+.terminal input {
+    border: none;
+    outline: none;
+    background: #212121;
+    font: 16px 'Courier New', Courier, monospace;
+    color: #FFFFFF;
+}
+
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    color: #FFFFFF;
+}
+
+table td {
+    border: 1px solid;
+}
+

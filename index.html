@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--
+The MIT License (MIT)
+Copyright (c) 2014 lngost
+See http://opensource.org/licenses/MIT
+
+Author @lngost
+-->
+
+<html lang="en">
+    <head>
+        <title>Yinghao's Blog - lngost的博客</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="lngost's blog on github pages, check out my posts here!!">
+        <meta name="description" content="lngost的博客，个人原创博文">
+        
+        <link rel="shortcut icon" href="images/myL.ico" /> <!-- The shortcut icon -->
+        
+        <!-- Import third party plugins -->
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script> <!-- http://jquery.com/ -->
+        <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script> <!-- http://jquery.com/ -->
+        <link rel="stylesheet" href="css/animate.css" /> <!-- http://daneden.github.io/animate.css/ -->
+        <script type="text/javascript" src="js/jquery.storageapi.min.js"></script> <!-- http://github.com/julien-maurel/jQuery-Storage-API/ -->
+        
+        <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" /> <!-- http://getbootstrap.com/ -->
+        <script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script> <!-- http://getbootstrap.com/ -->
+        <!-- End of third party plugins -->
+        
+        <!-- Import self css and js files -->
+        <link rel="stylesheet" href="css/selfmain.css" />
+        <script type="text/javascript" src="js/my-language-jquery.js"></script>
+        <script type="text/javascript" src="js/iframe-height-set.js"></script>
+        <script type="text/javascript" src="js/my_jquery.js"></script>
+        <script type="text/javascript" src="js/mycanvas.js"></script>
+        
+    </head>
+    <body>
+
+        <div class="super-container-content">
+            
+            <div class="container-title">
+                <canvas id="myCanvas"></canvas>
+            </div>
+            
+            <div class="space"></div>
+            
+            <div class="container" id="container-centre-main">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="row menu_nav">
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="dropdown lan_option">
+                                    <button type="button" class="btn btn-default btn-lg dropdown-toggle btn-info" id="lan_option" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-th-list"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="lan_option">
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" id="enButton"><h5>English <span class="glyphicon glyphicon-ok"></span></h5></a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" id="cnButton"><h5>简体中文 <span class=""></span></h5></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <img src="images/hacker.jpg" class="img-responsive img-rounded" id="menu_photo" alt="Responsive image" width="110" height="250">
+                            </div>
+                            <div class="col-xs-12 col-sm-12 text-center">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="./"><h4 class="language_en">Home</h4><h4 class="language_cn">主页</h4></a></li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
+                                            <h4 class="language_en">Article<span class="caret"></span></h4>
+                                            <h4 class="language_cn">我的博文<span class="caret"></span></h4>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li><a id="article-tech"><h5 class="language_en">Technology</h5><h5 class="language_cn">技术文章</h5></a></li>
+                                            <li><a id="article-others"><h5 class="language_en">Others</h5><h5 class="language_cn">其他博文</h5></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
+                                            <h4 class="language_en">Demo<span class="caret"></span></h4>
+                                            <h4 class="language_cn">项目演示<span class="caret"></span></h4>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li><a id="demo-game"><h5 class="language_en">Game</h5><h5 class="language_cn">游戏</h5></a></li>
+                                            <li class="disabled"><a><h5 class="language_en">Other projects</h5><h5 class="language_cn">其他项目</h5></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
+                                            <h4 class="language_en">Comment<span class="caret"></span></h4>
+                                            <h4 class="language_cn">留言评论<span class="caret"></span></h4>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li class="disabled"><a><h5 class="language_en">Email me</h5><h5 class="language_cn">邮件</h5></a></li>
+                                            <li><a id="leave-message"><h5 class="language_en">Leave message</h5><h5 class="language_cn">在线留言</h5></a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="pages/aboutme.html" target="_blank">
+                                            <h4 class="language_en">About me</h4>
+                                            <h4 class="language_cn">个人简介</h4>
+                                        </a>
+                                    </li>
+                                    <li><hr class='hrstyle'></li> <!-- Display a horizontal rule -->
+                                    <li><a href="https://github.com/lngost" target="_blank">
+                                            <img alt="" src="images/GitHub-Mark-120px-plus.png" width="50" height="50">
+                                            <h4 class="language_en">View On GitHub</h4>
+                                            <h4 class="language_cn">查看我的GitHub</h4>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-1 spacediv"></div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-7" id="index-right-col">
+                        <div class="row">
+                            <div id="carousel-main" class="carousel slide" data-ride="carousel" data-interval="4000">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-main" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-main" data-slide-to="1"></li>
+                                    <li data-target="#carousel-main" data-slide-to="2"></li>
+                                </ol>
+                                
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="images/checklanguage.jpg" alt="" width="490" height="280" />
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/thingspast.jpg" alt="" width="490" height="280" />
+                                    </div>
+                                    <div class="item">
+                                        <img src="images/quickaccess.jpg" alt="" width="490" height="280" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br/>
+                        
+                        
+                        <div class="row thumbnail_div">
+                            <br/>
+                            <div class="thumbnail_divson">
+                            <div class="col-xs-12 col-sm-4 thumbnail_container">
+                                <a href="pages/articles/tech/Easy-Date-Picker/" target="_blank">
+                                <div class="thumbnail">
+                                    <img src="pages/articles/tech/Easy-Date-Picker/images/easy-date-picker.jpg" alt="" width="100" height="60">
+                                    <div class="caption language_en">
+                                        <h4>Easy Date Picker - html, js & css</h4>
+                                        <p>Make a simple date picker with easy web tech!</p>
+                                    </div>
+                                    <div class="caption language_cn">
+                                        <h4>简单日期选择器 - html, js & css</h4>
+                                        <p>简单的日期选择器，简单的web技术</p>
+                                    </div>
+                                    <div class="caption lan-version">
+                                        
+                                        <p class="language_en">Version: <!--<span class="label label-primary">EN</span>--><span class="label label-danger">CN</span></p>
+                                        <p class="language_cn">语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></p>
+                                        <!--
+                                        <p class="language_en"><span class="label label-info">Coming soon...</span></p>
+                                        <p class="language_cn"><span class="label label-info">即将发布...</span></p>
+                                        -->
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4 thumbnail_container">
+                                <a href="pages/articles/tech/AWS-A-Gentle-Touch/" target="_blank">
+                                <div class="thumbnail">
+                                    <img src="images/amazon-web-services-logo.png" alt="aws logo" width="155" height="100">
+                                    <div class="caption language_en">
+                                        <h4>AWS - A Gentle Touch</h4>
+                                        <p>Amazon is really amazing!! Check out what's going on here.</p>
+                                    </div>
+                                    <div class="caption language_cn">
+                                        <h4>亚马逊云计算服务 - 初窥门径</h4>
+                                        <p>意料之外的亚马逊云计算服务，快看看是怎么回事</p>
+                                    </div>
+                                    <div class="caption lan-version">
+                                        
+                                        <p class="language_en">Version: <!--<span class="label label-primary">EN</span>--><span class="label label-danger">CN</span></p>
+                                        <p class="language_cn">语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></p>
+                                        <!--
+                                        <p class="language_en"><span class="label label-info">Coming soon...</span></p>
+                                        <p class="language_cn"><span class="label label-info">即将发布...</span></p>
+                                        -->
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4 thumbnail_container">
+                                <a href="projects/game-space-ship/" target="_blank">
+                                <div class="thumbnail">
+                                    <img src="images/title-game-space-ship.png" alt="" width="120" height="100">
+                                    <div class="caption language_en">
+                                        <h4>HTML5 Space Ship</h4>
+                                        <p>HTML5 version of the Wechat game Space Ship!</p>
+                                    </div>
+                                    <div class="caption language_cn">
+                                        <h4>HTML5飞机大战</h4>
+                                        <p>微信飞机大战的复刻版，使用HTML5 canvas</p>
+                                    </div>
+                                    <div class="caption lan-version">
+                                        
+                                        <p class="language_en">Version: <span class="label label-primary">1.0</span><!--<span class="label label-danger">CN</span></p>-->
+                                        <p class="language_cn">版本: <span class="label label-primary">1.0</span><!--<span class="label label-danger">中</span></p>-->
+                                        
+                                        <!--
+                                        <p class="language_en"><span class="label label-info">Coming soon...</span></p>
+                                        <p class="language_cn"><span class="label label-info">即将发布...</span></p>
+                                        -->
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            
+
+                            </div>
+                        
+                        </div>
+                        <br />
+                        
+                        <div class="row thumbnail_div">
+                            <br/>
+                            <div class="thumbnail_divson">
+                            <div class="col-xs-12 col-sm-4 thumbnail_container">
+                                <a href="pages/articles/tech/ARP-Packet-By-c/arp-packet-by-c.html" target="_blank">
+                                <div class="thumbnail">
+                                    <img src="pages/articles/tech/ARP-Packet-By-c/images/arp-protocol.jpg" alt="" width="65" height="60">
+                                    <div class="caption language_en">
+                                        <h4>ARP poison packet by using c</h4>
+                                        <p>An easy implementation of arp attack.</p>
+                                    </div>
+                                    <div class="caption language_cn">
+                                        <h4>ARP欺骗包的制作--c语言</h4>
+                                        <p>一个简单的ARP攻击实现和原理</p>
+                                    </div>
+                                    <div class="caption lan-version">
+                                        
+                                        <p class="language_en">Version: <!--<span class="label label-primary">EN</span>--><span class="label label-danger">CN</span></p>
+                                        <p class="language_cn">语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></p>
+                                        <!--
+                                        <p class="language_en"><span class="label label-info">Coming soon...</span></p>
+                                        <p class="language_cn"><span class="label label-info">即将发布...</span></p>
+                                        -->
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4 thumbnail_container">
+                                <a href="pages/articles/others/XcodeGhost-review/xcodeghost-review.html" target="_blank">
+                                <div class="thumbnail">
+                                    <img src="pages/articles/others/XcodeGhost-review/images/xcode-img.png" alt="xcode ghost" width="65" height="60">
+                                    
+                                    <div class="caption language_en">
+                                        <h4>XcodeGhost Review</h4>
+                                        <p>A record for the XcodeGhost infection</p>
+                                    </div>
+                                    <div class="caption language_cn">
+                                        <h4>XcodeGhost笔记</h4>
+                                        <p>XcodeGhost大规模感染事件资料记录</p>
+                                    </div>
+                                    <div class="caption lan-version">
+                                        
+                                        <p class="language_en">Version: <!--<span class="label label-primary">EN</span>--><span class="label label-danger">CN</span></p>
+                                        <p class="language_cn">语言版本: <!--<span class="label label-primary">英</span>--><span class="label label-danger">中</span></p>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-4 thumbnail_container">
+                                <!--<a href="" target="_blank">-->
+                                <div class="thumbnail">
+                                    <img src="images/coming-soon.jpg" alt="aws logo" width="155" height="100">
+                                    <!--
+                                    <div class="caption language_en">
+                                        <h4>Title</h4>
+                                        <p>Description.</p>
+                                    </div>
+                                    <div class="caption language_cn">
+                                        <h4>标题</h4>
+                                        <p>简介</p>
+                                    </div>
+                                    <div class="caption lan-version">
+                                        
+                                        <p class="language_en">Version: <span class="label label-primary">EN</span><span class="label label-danger">CN</span></p>
+                                        <p class="language_cn">语言版本: <span class="label label-primary">英</span><span class="label label-danger">中</span></p>
+                                        
+                                        <p class="language_en"><span class="label label-info">Coming soon...</span></p>
+                                        <p class="language_cn"><span class="label label-info">即将发布...</span></p>
+                                        
+                                    </div>
+                                    -->
+                                </div>
+                                </a>
+                            </div>
+                            
+
+                            </div>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="push"></div>
+        </div>
+        
+        
+        <div class="super-container-tail">
+            <div class="row">
+                <div class="space"></div>
+                <div class="col-xs-12 col-sm-12">
+                    <h4 class="language_en">Recommended Browser:</h4>
+                    <h4 class="language_cn">建议使用浏览器:</h4>
+                    <a data-toggle="tooltip" title="Google Chrome"><img src="images/googlechrome.png" alt="google_chrome" width="40" height="40" ></a>
+                    <a data-toggle="tooltip" title="Mozilla Firefox"><img src="images/mozillafirefox.png" alt="mozilla_firefox" width="40" height="40"></a>
+                    <a data-toggle="tooltip" title="Opera"><img src="images/opera.png" alt="opera" width="40" height="40"></a>
+                    <a data-toggle="tooltip" title="Safari"><img src="images/applesafari.png" alt="apple_safari" width="40" height="40"></a>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12" id="mysign">
+                    <p>—— Website by <a rel="author" href="https://github.com/lngost"><em>lngost</em></a></p>
+                </div>
+                
+                <div class="col-xs-12 col-sm-5" id="license">
+                    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="images/creative-license.png" width="88" height="31" /></a>
+                    <br />
+                    <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Lin's Blog</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">lngost</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>
+
+
